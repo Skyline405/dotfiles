@@ -117,4 +117,4 @@ if ! shopt -oq posix; then
 fi
 
 # My aliases
-alias dotfiles='/usr/bin/git --git-dir=/home/raul/dotfiles --work-tree=/home/raul'
+alias dot='/usr/bin/git --git-dir=/home/raul/dotfiles --work-tree=/home/raul'

@@ -1,9 +1,9 @@
 " VIM settings
 set number					" show lines numbers
-set ruler						" show line number at the bottom bar
-set tabstop=2				" tabs size
-set shiftwidth=2
-set softtabstop=2
+set ruler					" show line number at the bottom bar
+set tabstop=4				" tabs size
+set shiftwidth=4
+set softtabstop=4
 
 call plug#begin('~/.vim/plugged')
 
@@ -28,7 +28,7 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯЖ;ABCDEFGHIJKLM
 
 set smartindent
 "set rnu
-set keymap=russian-jcukenwin
+"set keymap=russian-jcukenwin
 "set iminsert=0
 "set imsearch=0
 set cursorline
