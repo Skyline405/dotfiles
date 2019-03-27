@@ -110,9 +110,22 @@ map <C-h> <C-w><Left>
 map <leader>vl :vsp $MYVIMRC<CR>
 map <leader>vr :source $MYVIMRC<CR>
 
-"Paste from system clipboard
-map <Leader>p :set paste<CR>a<ESC>"*]p:set nopaste<CR>
-map <Leader>P :set paste<CR>i<ESC>"*]p:set nopaste<CR>
+" Copy/Paste system clipboard
+" More info see here:
+"	https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
+if has('clipboard')
+	" Using system clipboard (unnamed - mouse clip, unnamedplus - Ctrl clip)
+	set clipboard=unnamedplus
+
+	" Clipboard (system use: <C-c>/<C-v>) [unnamedplus]
+	" noremap <Leader>y "+y
+	" noremap <Leader>p "+p
+	" noremap <Leader>d "+d
+
+	" Primary clipboard (Paste on MouseWheel) [unnamed]
+	" noremap <Leader>Y "*y
+	" noremap <Leader>P "*p
+endif
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
@@ -140,4 +153,8 @@ if exists(":Tabularize")
 
 	nmap <Leader>a: :Tabularize /:\zs<CR>
 	vmap <Leader>a: :Tabularize /:\zs<CR>
+
+	" <bar> is |
+	nmap <Leader>a<bar> :Tabularize /<bar><CR>
+	vmap <Leader>a<bar> :Tabularize /<bar><CR>
 endif
