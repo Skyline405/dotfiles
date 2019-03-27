@@ -1,5 +1,6 @@
 " My variables
 let g:front_file_types = ['javascript', 'html', 'vue']
+let g:css_file_types = ['css', 'scss', 'sass', 'less', 'stylus']
 
 
 call plug#begin('~/.vim/plugged')
@@ -12,14 +13,14 @@ Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'valloric/youcompleteme', { 'do': './install.py' }
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 " Formatters and linters
 Plug 'godlygeek/tabular'
 " Plug 'scrooloose/syntastic'
 
 " Interface 
-Plug 'bling/vim-airline'
+Plug 'bling/vim-airline', { 'do': 'apt-get install fonts-powerline -y' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
@@ -30,7 +31,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'AlessandroYorba/Sierra'
 
 " HTML
-Plug 'mattn/emmet-vim', { 'for': g:front_file_types }
+Plug 'mattn/emmet-vim', { 'for': g:front_file_types + g:css_file_types }
 Plug 'valloric/matchtagalways', { 'for': g:front_file_types }
 
 " JavaScript
@@ -46,14 +47,15 @@ Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'mxw/vim-jsx', { 'for': g:front_file_types }
 
 " CSS / LESS / Stylus / SASS / SCSS
-Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus'] }
+Plug 'ap/vim-css-color', { 'for': g:css_file_types  }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
+Plug 'hail2u/vim-css3-syntax', { 'for': g:css_file_types }
 Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 " GIT
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -93,18 +95,17 @@ set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁ
 " Mappings
 let g:mapleader = ','
 
-" Don't move to next, just highlight and stay here
-nnoremap * *N
-
 " Hide search highlight
 nmap <leader>nh :set nohlsearch<CR>
-nmap <leader>hh :set hlsearch<CR>
+nmap <leader>hh :set hlsearch!<CR>
 
 " Map ctrl-movement keys to window switching
 map <C-k> <C-w><Up>
 map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
+
+
 
 " Edit .vimrc
 map <leader>vl :vsp $MYVIMRC<CR>
@@ -129,22 +130,28 @@ endif
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeQuitOnOpen = 1
 
 " NerdCommenter
 let g:NERDSpaceDelims = 1
 
 " Airline options
 let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
 let g:airline_theme='deus'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#enabled=0
+let g:airline#extensions#branch#enabled=0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 " Emmet 
+" let g:user_emmet_leader_key='<C-Z>'
 " let g:user_emmet_mode='a' 
 
 " YouCompleteMe 
-noremap <silent> <C-k> :YcmCompleter GoTo<CR>
-noremap <silent> <C-i> :YcmCompleter GetType<CR>
+" noremap <silent> <C-k> :YcmCompleter GoTo<CR>
+" noremap <silent> <C-i> :YcmCompleter GetType<CR>
 
 " Tabular plugin
 if exists(":Tabularize")
