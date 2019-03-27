@@ -22,5 +22,7 @@ setxkbmap -layout us,ru -symbols "pc+us+ru:2+inet(evdev)+group(alt_shift_toggle)
 #### Help links:
 
 https://habr.com/ru/post/222285/
+
 https://unix.stackexchange.com/questions/90089/remapping-both-caps-lock-and-shiftcaps-lock-in-xkb
+
 http://www.linuxlib.ru/Linux/xkb/gram-action.html
