@@ -1,0 +1,8 @@
+default partial modifier_keys
+xkb_symbols "compose" {
+	key <CAPS> {
+		type[Group1] = "TWO_LEVEL",
+		symbols[Group1] = [ Escape, Caps_Lock ],
+		actions[Group1] = [ SetMods(mods=Control), LockMods(modifiers=Lock) ]
+	};
+};
