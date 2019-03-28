@@ -37,11 +37,12 @@ Plug 'valloric/matchtagalways', { 'for': g:front_file_types }
 
 " JavaScript
 Plug 'pangloss/vim-javascript', { 'for': g:front_file_types }
-Plug 'jelera/vim-javascript-syntax', { 'for': g:front_file_types }
-Plug 'gavocanov/vim-js-indent', { 'for': g:front_file_types }
-Plug 'othree/es.next.syntax.vim', { 'for': g:front_file_types }
-Plug 'maksimr/vim-jsbeautify', { 'for': g:front_file_types }
+" Plug 'jelera/vim-javascript-syntax', { 'for': g:front_file_types }
+" Plug 'gavocanov/vim-js-indent', { 'for': g:front_file_types }
+" Plug 'othree/es.next.syntax.vim', { 'for': g:front_file_types }
+" Plug 'maksimr/vim-jsbeautify', { 'for': g:front_file_types }
 " Plug 'othree/yajs.vim', { 'for': g:front_file_types }
+" Plug 'isruslan/vim-es6', { 'for': g:front_file_types }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 " JSX
@@ -144,13 +145,13 @@ if has('clipboard')
 endif
 
 " Save buffers undo/redo history
-if v:version >= 700
-    set history=64
-    set undolevels=128
-    set undodir=~/.vim/undodir/
-    set undofile
-    set undoreload=1000
-endif
+" if v:version >= 700
+" set history=64
+" set undolevels=128
+" set undodir=~/.vim/undodir/
+" set undofile
+" set undoreload=1000
+" endif
 
 " NerdTree
 map <C-n> :NERDTreeToggle<CR>
