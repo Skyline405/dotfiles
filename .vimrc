@@ -12,8 +12,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
-Plug 'valloric/youcompleteme', { 'do': './install.py' }
+" Plug 'valloric/youcompleteme', { 'do': './install.py' }
 " Plug 'terryma/vim-multiple-cursors'
+Plug 'easymotion/vim-easymotion'
 
 " Formatters and linters
 Plug 'godlygeek/tabular'
@@ -44,7 +45,7 @@ Plug 'maksimr/vim-jsbeautify', { 'for': g:front_file_types }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 " JSX
-Plug 'mxw/vim-jsx', { 'for': g:front_file_types }
+Plug 'mxw/vim-jsx', { 'for':  ['vue', 'jsx']  }
 
 " CSS / LESS / Stylus / SASS / SCSS
 Plug 'ap/vim-css-color', { 'for': g:css_file_types  }
@@ -82,6 +83,11 @@ set incsearch				" do search when typing
 set autoindent				" same indent on next line
 set smartindent
 set showmatch
+set hidden					" hidden unsaved buffer"
+set scrolloff=5
+set showcmd					" Show incomplete command in status bar
+" set novisualbell			" Disable cursor blinking
+" set noerrorbells
 
 set mouse=a					" can use mouse like other editors
 set t_Co=256
@@ -105,10 +111,20 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
+" Disable arrows (coz I use it)
+map <Left> <nop>
+map <Right> <nop>
+map <Up> <nop>
+map <Down> <nop>
 
+" Buffers navigation maps
 
 " Edit .vimrc
-map <leader>vl :vsp $MYVIMRC<CR>
+if has('nvim')
+	map <leader>vl :vsp ~/.vimrc<CR>
+else
+	map <leader>vl :vsp $MYVIMRC<CR>
+endif
 map <leader>vr :source $MYVIMRC<CR>
 
 " Copy/Paste system clipboard
@@ -121,11 +137,19 @@ if has('clipboard')
 	" Clipboard (system use: <C-c>/<C-v>) [unnamedplus]
 	" noremap <Leader>y "+y
 	" noremap <Leader>p "+p
-	" noremap <Leader>d "+d
 
 	" Primary clipboard (Paste on MouseWheel) [unnamed]
 	" noremap <Leader>Y "*y
 	" noremap <Leader>P "*p
+endif
+
+" Save buffers undo/redo history
+if v:version >= 700
+    set history=64
+    set undolevels=128
+    set undodir=~/.vim/undodir/
+    set undofile
+    set undoreload=1000
 endif
 
 " NerdTree
@@ -135,18 +159,42 @@ let g:NERDTreeQuitOnOpen = 1
 " NerdCommenter
 let g:NERDSpaceDelims = 1
 
+" NERDCommenter patch for VUE
+let g:ft = ''
+fu! NERDCommenter_before()
+	if &ft == 'vue'
+		let g:ft = 'vue'
+		let stack = synstack(line('.'), col('.'))
+		if len(stack) > 0
+			let syn = synIDattr((stack)[0], 'name')
+			if len(syn) > 0
+				let syn = tolower(syn)
+				exe 'setf '.syn
+			endif
+		endif
+	endif
+endfu
+fu! NERDCommenter_after()
+	if g:ft == 'vue'
+		setf vue
+		let g:ft = ''
+	endif
+endfu
+
 " Airline options
 let g:airline_powerline_fonts=1
 " let g:airline_left_sep=''
 " let g:airline_right_sep=''
 let g:airline_theme='deus'
-let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=0
+
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " Emmet 
-" let g:user_emmet_leader_key='<C-Z>'
+let g:user_emmet_leader_key='<C-e>'
 " let g:user_emmet_mode='a' 
 
 " YouCompleteMe 
@@ -165,3 +213,14 @@ if exists(":Tabularize")
 	nmap <Leader>a<bar> :Tabularize /<bar><CR>
 	vmap <Leader>a<bar> :Tabularize /<bar><CR>
 endif
+
+" Easymotion plugin
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap <leader>s <Plug>(easymotion-overwin-f2)
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
