@@ -103,6 +103,15 @@ set formatoptions-=cro		" don't auto insert comment on new next line
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+" Fix 256color terminals bg color
+" Ref: https://askubuntu.com/questions/739620/vim-theme-showing-up-strange-in-tmux
+if &term =~ '256color'
+    " disable Background Color Erase (BCE) so that color schemes
+    " render properly when inside 256-color tmux and GNU screen.
+    " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+    set t_ut=
+endif
+
 " ==============================================================================
 " Mappings
 " ==============================================================================
@@ -118,7 +127,7 @@ map <C-j> <C-w><Down>
 map <C-l> <C-w><Right>
 map <C-h> <C-w><Left>
 
-map Q <nop>
+map Q <nop>			" disable Ex mode
 
 " Disable arrows (coz I use it)
 map <Left> <nop>
