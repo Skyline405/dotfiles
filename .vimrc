@@ -1,10 +1,4 @@
 " ==============================================================================
-" My variables
-" ==============================================================================
-let g:front_file_types = ['javascript', 'html', 'vue']
-let g:css_file_types = ['css', 'scss', 'sass', 'less', 'stylus']
-
-" ==============================================================================
 " Vim-Plug
 " ==============================================================================
 call plug#begin('~/.vim/plugged')
@@ -34,27 +28,8 @@ Plug 'ryanoasis/vim-devicons'
 " Plug 'joshdick/onedark.vim'
 Plug 'crusoexia/vim-monokai'
 
-" Syntax highlighting
+" Support all popular languages (syntax, ident and smth. else)
 Plug 'sheerun/vim-polyglot'
-
-" HTML
-Plug 'mattn/emmet-vim', { 'for': g:front_file_types + g:css_file_types }
-Plug 'valloric/matchtagalways', { 'for': g:front_file_types }
-Plug 'maksimr/vim-jsbeautify', { 'for': g:front_file_types }
-
-" JavaScript
-Plug 'pangloss/vim-javascript', { 'for': g:front_file_types }
-Plug 'posva/vim-vue', { 'for': 'vue' }
-
-" JSX
-Plug 'mxw/vim-jsx', { 'for':  ['vue', 'jsx']  }
-
-" CSS / LESS / Stylus / SASS / SCSS
-Plug 'ap/vim-css-color', { 'for': g:css_file_types  }
-Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'hail2u/vim-css3-syntax', { 'for': g:css_file_types }
-Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 
 " GIT
 Plug 'airblade/vim-gitgutter'
@@ -99,7 +74,7 @@ set t_Co=256
 set background=dark
 colorscheme monokai
 
-set formatoptions-=cro		" don't auto insert comment on new next line
+" set formatoptions-=cro	" don't auto insert comment on new line (not work)
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
