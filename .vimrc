@@ -5,7 +5,7 @@ let g:front_file_types = ['javascript', 'html', 'vue']
 let g:css_file_types = ['css', 'scss', 'sass', 'less', 'stylus']
 
 " ==============================================================================
-" Vim-Plug 
+" Vim-Plug
 " ==============================================================================
 call plug#begin('~/.vim/plugged')
 
@@ -24,8 +24,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'godlygeek/tabular'
 " Plug 'scrooloose/syntastic'
 
-" Interface 
-Plug 'bling/vim-airline', { 'do': 'apt-get install fonts-powerline -y' }
+" Interface
+Plug 'bling/vim-airline' ", { 'do': 'apt-get install fonts-powerline -y' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
@@ -89,7 +89,7 @@ set showmatch
 set hidden					" hidden unsaved buffer"
 set scrolloff=5
 set showcmd					" Show incomplete command in status bar
-" set novisualbell			
+" set novisualbell
 " set noerrorbells
 set wildmenu				" vim commands autocompletion
 set wildmode=list:longest,full
@@ -184,8 +184,8 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:webdevicons_enable_ctrlp = 1
 
 " Refresh icons on resource vimrc
-if exists("b:NERDTree") && exists("g:loaded_webdevicons") 
-	call webdevicons#refresh() 
+if exists("b:NERDTree") && exists("g:loaded_webdevicons")
+	call webdevicons#refresh()
 endif
 
 " ==============================================================================
@@ -230,13 +230,13 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " ==============================================================================
-" Emmet 
+" Emmet
 " ==============================================================================
 let g:user_emmet_leader_key='<C-e>'
-" let g:user_emmet_mode='a' 
+" let g:user_emmet_mode='a'
 
 " ==============================================================================
-" YouCompleteMe 
+" YouCompleteMe
 " ==============================================================================
 " noremap <silent> <C-k> :YcmCompleter GoTo<CR>
 " noremap <silent> <C-i> :YcmCompleter GetType<CR>
