@@ -56,6 +56,10 @@ set nobackup
 set encoding=utf-8
 set textwidth=100
 set colorcolumn=+1
+set formatoptions-=t		" Don't auto-break long lines (re-enable this for prose)
+
+set listchars=tab:»\ 		" hidden chars
+au BufWinEnter * hi SpecialKey ctermfg=darkgray guifg=darkgray
 
 set ignorecase				" search with ignore case
 set smartcase
@@ -117,9 +121,9 @@ map <Down> <nop>
 
 " Edit .vimrc
 if has('nvim')
-	map <leader>vl :vsp ~/.vimrc<CR>
+	map <leader>vl :e ~/.vimrc<CR>
 else
-	map <leader>vl :vsp $MYVIMRC<CR>
+	map <leader>vl :e $MYVIMRC<CR>
 endif
 map <leader>vr :source $MYVIMRC<CR>
 
@@ -234,4 +238,3 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-
