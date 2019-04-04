@@ -13,6 +13,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'valloric/youcompleteme', { 'do': './install.py' }
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
+Plug 'bronson/vim-trailing-whitespace'
 
 " Formatters and linters
 Plug 'godlygeek/tabular'
@@ -25,7 +26,7 @@ Plug 'ryanoasis/vim-devicons'
 
 " Themes
 " Plug 'morhetz/gruvbox'
-" Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'crusoexia/vim-monokai'
 
 " Support all popular languages (syntax, ident and smth. else)
@@ -53,6 +54,8 @@ set cursorline				" highlight line under cursor
 set noswapfile
 set nobackup
 set encoding=utf-8
+set textwidth=100
+set colorcolumn=+1
 
 set ignorecase				" search with ignore case
 set smartcase
@@ -97,12 +100,12 @@ nmap <leader>nh :set nohlsearch<CR>
 nmap <leader>hh :set hlsearch!<CR>
 
 " Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
+noremap <C-k> <C-w><Up>
+noremap <C-j> <C-w><Down>
+noremap <C-l> <C-w><Right>
+noremap <C-h> <C-w><Left>
 
-map Q <nop>			" disable Ex mode
+map Q <nop>
 
 " Disable arrows (coz I use it)
 map <Left> <nop>
