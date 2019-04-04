@@ -9,8 +9,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
-Plug 'airblade/vim-gitgutter'
-" Plug 'valloric/youcompleteme', { 'do': './install.py' }
+Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'bronson/vim-trailing-whitespace'
@@ -29,12 +28,17 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
 Plug 'crusoexia/vim-monokai'
 
+" Languages support
 " Support all popular languages (syntax, ident and smth. else)
 Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
 
 " GIT
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+
+" Iteractive scratchpad
+Plug 'metakirby5/codi.vim'
 
 call plug#end()
 
