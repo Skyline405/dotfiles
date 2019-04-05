@@ -1,3 +1,19 @@
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+
+" Download vim-plug if not already installed
+if has('unix')
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+          \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
+elseif has('win32')
+  if empty(glob('~/vimfiles/autoload/plug.vim'))
+    echom "Install vim-plug!"
+  endif
+endif
+
 " ==============================================================================
 " Vim-Plug
 " ==============================================================================
@@ -47,7 +63,6 @@ call plug#end()
 " ==============================================================================
 filetype plugin indent on
 syntax on
-set nocompatible
 set autoread
 set number					" show lines numbers
 set ruler					" show line number at the bottom bar
@@ -242,3 +257,4 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
