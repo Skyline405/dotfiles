@@ -6,7 +6,7 @@
 $ sudo apt install -y git stow
 ```
 
-## Install
+## :package: Install
 
 Install dependencies
 Clone the repository:
@@ -20,7 +20,7 @@ To uninstall use:
 $ make unstow
 ```
 
-## VIM cookbook
+## :blue_book: VIM cookbook
 
 | recipe         | desc                                                     |
 | ---            | ---                                                      |
