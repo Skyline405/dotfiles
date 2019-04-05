@@ -20,16 +20,16 @@ To uninstall use:
 $ make unstow
 ```
 
-## VIM coock book
+## VIM cookbook
 
-| recipe         | desc                                                                    |
-| ---            | ---                                                                     |
-| :g//t$         | скопировать строки, содержащие подсвеченное значение, в конец файла     |
-| :g//d          | удалить строки, содержащие подсвеченное значение                        |
-| :g!//d         | удалить строки, НЕ содержащие подсвеченного значения                    |
-| :v/./,/./-j    | Заменить каждое вхождение нескольких пустых строк на одну пустую строку |
-| :'<,'>s/$/\r/g | Раздвинуть подряд идущие строки                                         |
-| :%s/\s\+$//g   | Удалить лишние пробелы в концах строк                                   |
+| recipe         | desc                                                     |
+| ---            | ---                                                      |
+| :g//t$         | copy lines contains highlighted value at the end of file |
+| :g//d          | delete lines contains highkighted value                  |
+| :g!//d         | delete lines NOT contains highlighted value              |
+| :v/./,/./-j    | replace each entry many empty lines by one empty line    |
+| :'<,'>s/$/\r/g | add empty line between all lines                         |
+| :%s/\s\+$//g   | delete trailing whitespaces                              |
 
 ---
 
