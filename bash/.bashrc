@@ -1,6 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+bash_dir="$HOME/.config/bash"
 
 # If not running interactively, don't do anything
 case $- in
@@ -91,10 +89,6 @@ fi
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -164,31 +158,14 @@ parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' | sed -e 's/\*\s\(.*\)$/\1/' | sed -e 's/(\(HEAD\)\s.*\s\(.*\))/\1 -> \2/' | sed -e 's/.*/ \0/'
 }
 
-myPrompt() {
+prompt_setup () {
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[01;35m\]$(parse_git_branch)\[\033[00m\] \[\033[01;34m\]\$\[\033[00m\] '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;35m\]$(parse_git_branch)\[\033[00m\] \[\033[01;34m\]\$\[\033[00m\] '
 }
 
-myPrompt
+prompt_setup
 
-# alias python=python3
-# alias pip=pip3
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-alias gsu="git submodule update"
-alias gs='git status '
-# alias ga='git add '
-# alias gb='git branch '
-# alias gc='git commit'
-# alias gd='git diff'
-# alias go='git checkout '
-alias gf='git fetch '
-# alias gr='git reset '
-# alias grh='git reset --hard '
-alias gfc='git fetch && git checkout '
-# alias gk='gitk --all&'
-# alias gx='gitx --all'
-
-alias got='git '
-alias get='git '
-alias gut='git '
+# Aliases
+if [ -f ~/.config/bash/aliases.sh ]; then
+    source ~/.config/bash/aliases.sh
+fi
