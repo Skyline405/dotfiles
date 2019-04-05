@@ -56,6 +56,9 @@ Plug 'tpope/vim-fugitive'
 " Iteractive scratchpad
 Plug 'metakirby5/codi.vim'
 
+" Markdown previw support
+Plug 'shime/vim-livedown'
+
 call plug#end()
 
 " ==============================================================================
