@@ -124,11 +124,71 @@ if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
 
+####################################################################################################
+# My Setting
+####################################################################################################
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source ~/myscripts/bashrc
 
-# Alias for dotfiles repo
-alias dot='/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+edit-ds-conf() {
+	RED='\033[1;31m'
+	GREEN='\033[1;32m'
+	YELLOW='\033[1;33m'
+	NC='\033[00m'
+
+	filename="/etc/nginx/sites-available/webdispatch.conf"
+	md5f1=$(md5sum "$filename" | cut -d' ' -f1)
+	sudo gedit "$filename"
+
+	md5f2=$(md5sum "$filename" | cut -d' ' -f1)
+
+	if [ "$md5f1" != "$md5f2" ]; then
+		echo -e "\nDispatch RPC has been changed!\n"
+		echo -e "${YELLOW}Waiting for nginx restart...${NC}"
+		if sudo service nginx restart ; then
+		    echo -e "${GREEN}Nginx restarted success!${NC}\n"
+		else
+		    echo -e "${RED}Cannot restart${NC}Nginx ${RED}service${NC}"
+		fi
+	fi
+
+}
+
+
+# Prompt settings
+parse_git_branch() {
+    # git branch 2> /dev/null | sed -e '/^[^*]/d' | sed -e 's/* \(.*\)/ (\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' | sed -e 's/\*\s\(.*\)$/\1/' | sed -e 's/(\(HEAD\)\s.*\s\(.*\))/\1 -> \2/' | sed -e 's/.*/ \0/'
+}
+
+myPrompt() {
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\]\w\[\033[01;35m\]$(parse_git_branch)\[\033[00m\] \[\033[01;34m\]\$\[\033[00m\] '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;35m\]$(parse_git_branch)\[\033[00m\] \[\033[01;34m\]\$\[\033[00m\] '
+}
+
+myPrompt
+
+# alias python=python3
+# alias pip=pip3
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+alias gsu="git submodule update"
+alias gs='git status '
+# alias ga='git add '
+# alias gb='git branch '
+# alias gc='git commit'
+# alias gd='git diff'
+# alias go='git checkout '
+alias gf='git fetch '
+# alias gr='git reset '
+# alias grh='git reset --hard '
+alias gfc='git fetch && git checkout '
+# alias gk='gitk --all&'
+# alias gx='gitx --all'
+
+alias got='git '
+alias get='git '
+alias gut='git '

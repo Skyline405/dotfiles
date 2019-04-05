@@ -1,5 +1,25 @@
 # Dotfiles
 
+## Dependencies
+
+```bash
+$ sudo apt install -y git stow
+```
+
+## Install
+
+Install dependencies
+Clone the repository:
+```bash
+$ git clone https://github.com/Skyline405/dotfiles.git && cd dotfiles
+$ make stow
+```
+
+To uninstall use:
+```bash
+$ make unstow
+```
+
 ## VIM coock book
 
 | recipe         | desc                                                                    |
@@ -9,7 +29,7 @@
 | :g!//d         | удалить строки, НЕ содержащие подсвеченного значения                    |
 | :v/./,/./-j    | Заменить каждое вхождение нескольких пустых строк на одну пустую строку |
 | :'<,'>s/$/\r/g | Раздвинуть подряд идущие строки                                         |
-| :%s/\s\+$//g   | Удалить лишние пробелы в концах строк                                    |
+| :%s/\s\+$//g   | Удалить лишние пробелы в концах строк                                   |
 
 ---
 
