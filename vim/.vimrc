@@ -98,7 +98,7 @@ set wildmode=list:longest,full
 set mouse=a					" can use mouse like other editors
 set t_Co=256
 set background=dark
-colorscheme monokai
+silent! colorscheme monokai
 
 " set formatoptions-=cro	" don't auto insert comment on new line (not work)
 
