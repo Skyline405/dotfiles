@@ -91,7 +91,7 @@ set autoindent				" same indent on next line
 set smartindent
 set showmatch
 set hidden					" hidden unsaved buffer"
-set scrolloff=5
+set scrolloff=8
 set showcmd					" Show incomplete command in status bar
 " set novisualbell
 " set noerrorbells
