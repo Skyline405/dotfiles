@@ -1,0 +1,7 @@
+[submodule "awesome/.config/awesome/lain"]
+	path = awesome/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git
+
+[submodule "awesome/.config/awesome/calendar"]
+	path = awesome/.config/awesome/calendar
+	url = https://github.com/deficient/calendar.git
