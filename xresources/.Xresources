@@ -1,7 +1,17 @@
+#include ".config/xorg/themes/red_fall"
+
+!!! Extensions
+urXVT.PERL-EXT-COMmon : default,matcher,url-select,tabbedex
+URxvt.matcher.butto   : 1
+URxvt.urlLauncher     : google-chrome
+URxvt.underlineURLs   : true
+URxvt.keysym.M-u      : perl:url-select:select_next
+
+
 URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
-Urxvt*buffered: false
-URxvt.intensityStyles: false
+! Urxvt*buffered: false
+! URxvt.intensityStyles: false
 URxvt.font:	xft:UbuntuMono Nerd Font:size=11, \
 			xft:Inconsolata Nerd Font Mono:size=11, \
 			xft:DejaVuSansMono Nerd Font:size=11, \
@@ -10,44 +20,66 @@ URxvt.font:	xft:UbuntuMono Nerd Font:size=11, \
 			xft:RobotoMono Nerd Font:size=11, \
 			xft:Noto Sans Mono:size=11, \
 			xft:Monospace:style=Medium:size=11
-URxvt.saveLines: 2000
+URxvt.saveLines: 10000
 URxvt.scrollBar: false
-URxvt.cursorColor: white
 
-!! Extensions
-! URxvt.perl-ext-common: default,matcher,resize-font,url-select,keyboard-select,clipboard
-! URxvt.colorUL: #4682B4
-!! url-select
-! URxvt.keysym.M-u: perl:url-select:select_next
-! URxvt.url-select.launcher: urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
-! URxvt.url-select.underline: true
-! !! keyboard-select:
-! URxvt.keysym.M-Escape: perl:keyboard-select:activate
-! !! resize-font
-! URxvt.resize-font.smaller: C-j
-! URxvt.resize-font.bigger:  C-k
-! !! Matcher
-! URxvt.url-launcher:	urxvt -e lynx -cfg=~/.lynx.cfg -lss=~/.lynx.lss
-! URxvt.matcher.button: 1
-!!clipboard
-! URxvt.keysym.M-c: perl:clipboard:copy
-! URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.depth: 32
 
-! Dracula Xresources palette
-!! COLORS
-
-! special
-! URxvt*foreground:   #bbc5ff
-! URxvt*background:   [100]#292d3e
-! URxvt*cursorColor:  #bbc5ff
-URxvt*foreground:   white
-URxvt*background:   [100]#292d3e
-URxvt*cursorColor:  #bbc5ff
+! URxvt*foreground:   #e0e0e0
+! URxvt*background:   [70]#292d3e
 
 !!! Transparency
 ! Fake
-URxvt*transparent: true
-URxvt*shading: 30
+! URxvt*transparent: true
+! URxvt*shading: 15
 ! Real
 ! URxvt*depth: 32
 ! urxvt*background: rgba:0000/0000/0200/c800
+
+! URxvt*background:  [80]#2E3436
+! URxvt*foreground:  #EEEEEC
+
+!!! ColorSchema
+
+! Normal
+! color0         BLACK
+! color1         red
+! color2         green
+! color3         yellow
+! color4         blue       (синий)
+! color5         purple     (фиолетовый)
+! color6         cyan       (голубой)
+! color7         white
+
+! Light
+! color8         darkgray
+! color9         red
+! color10        green
+! color11        yellow
+! color12        blue       (синий)
+! color13        purple     (фиолетовый)
+! color14        cyan       (голубой)
+! color15        lightgray
+
+! URxvt*color0:      #2E3436
+! URxvt*color1:      #CC0000
+! URxvt*color2:      #4E9A06
+! URxvt*color3:      #C4A000
+! URxvt*color4:      #3465A4
+! URxvt*color5:      #75507B
+! URxvt*color6:      #06989A
+! URxvt*color7:      #D3D7CF
+! URxvt*color8:      #555753
+! URxvt*color9:      #EF2929
+! URxvt*color10:     #8AE234
+! URxvt*color11:     #FCE94F
+! URxvt*color12:     #729FCF
+! URxvt*color13:     #AD7FA8
+! URxvt*color14:     #34E2E2
+! URxvt*color15:     #EEEEEC
+! URxvt*cursorColor: #DD0000
+
+
+
+
+
