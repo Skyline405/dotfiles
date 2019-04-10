@@ -1,7 +1,7 @@
-#include ".config/xorg/themes/red_fall"
+#include ".config/xorg/themes/pumpkin_spice"
 
 !!! Extensions
-urXVT.PERL-EXT-COMmon : default,matcher,url-select,tabbedex
+URxvt.perl-ext-common : default,matcher,url-select,tabbedex
 URxvt.matcher.butto   : 1
 URxvt.urlLauncher     : google-chrome
 URxvt.underlineURLs   : true
@@ -78,8 +78,4 @@ URxvt.depth: 32
 ! URxvt*color14:     #34E2E2
 ! URxvt*color15:     #EEEEEC
 ! URxvt*cursorColor: #DD0000
-
-
-
-
 

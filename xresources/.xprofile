@@ -1,1 +1,5 @@
 xrandr --output VGA-1 --left-of DVI-I-1
+
+compton > /dev/null &
+thunderbird > /dev/null &
+skypeforlinux > /dev/null &
