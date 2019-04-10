@@ -68,23 +68,23 @@ color.cyan.accent4  = "#00B8D4"
 ----------------------------------------------------------------------------------------------------
 local theme                 = {}
 theme.dir                   = os.getenv("HOME") .. "/.config/awesome/themes/raul/"
-theme.wallpaper             = theme.dir .. "wall.jpg"
+theme.wallpaper             = theme.dir .. "wall.png"
 
 theme.font_size             = 9
 theme.font_family           = "xos4 Terminus"
 theme.font                  = theme.font_family .. " " .. theme.font_size
 
 theme.fg_normal             = "#FEFEFE"
-theme.fg_focus              = color.light_blue.lighten3
+theme.fg_focus              = "#FFBE64" -- light orange
 theme.fg_urgent             = "#C83F11"
 theme.bg_normal             = "#222222"
 theme.bg_focus              = "#1E2320"
 theme.bg_urgent             = "#3F3F3F"
 theme.bg_systray            = theme.bg_normal
 
-theme.border_width          = 2
-theme.border_normal         = color.light_blue.darken4
-theme.border_focus          = color.light_blue.lighten1
+theme.border_width          = 4
+theme.border_normal         = "#3F3F3F"
+theme.border_focus          = "#E15848"
 theme.border_marked         = "#CC9393"
 
 theme.titlebar_bg_focus     = "#3F3F3F"
@@ -113,7 +113,7 @@ theme.layout_magnifier      = theme.dir .. "layouts/magnifier.png"
 theme.layout_floating       = theme.dir .. "layouts/floating.png"
 
 theme.useless_gap           = 5
-theme.wibar_height           = 25
+theme.wibar_height          = 25
 
 ----------------------------------------------------------------------------------------------------
 --- Widgets ---
