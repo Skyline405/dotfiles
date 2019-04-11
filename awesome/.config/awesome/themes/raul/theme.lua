@@ -8,7 +8,7 @@
 --- Imports ---
 ----------------------------------------------------------------------------------------------------
 -- local dpi   = require("beautiful.xresources").apply_dpi
-local lain  = require("lain")
+-- local lain  = require("lain")
 
 ----------------------------------------------------------------------------------------------------
 --- Palete --- TODO: move to external package
@@ -68,7 +68,7 @@ color.cyan.accent4  = "#00B8D4"
 ----------------------------------------------------------------------------------------------------
 local theme                 = {}
 theme.dir                   = os.getenv("HOME") .. "/.config/awesome/themes/raul/"
-theme.wallpaper             = theme.dir .. "wall.png"
+theme.wallpaper             = theme.dir .. "wallpapers/wall.png"
 
 theme.font_size             = 9
 theme.font_family           = "xos4 Terminus"
@@ -84,7 +84,7 @@ theme.bg_systray            = theme.bg_normal
 
 theme.border_width          = 4
 theme.border_normal         = "#3F3F3F"
-theme.border_focus          = "#E15848"
+theme.border_focus          = "#E1584800"
 theme.border_marked         = "#CC9393"
 
 theme.titlebar_bg_focus     = "#3F3F3F"
@@ -112,7 +112,7 @@ theme.layout_fullscreen     = theme.dir .. "layouts/fullscreen.png"
 theme.layout_magnifier      = theme.dir .. "layouts/magnifier.png"
 theme.layout_floating       = theme.dir .. "layouts/floating.png"
 
-theme.useless_gap           = 5
+theme.useless_gap           = 4
 theme.wibar_height          = 25
 
 ----------------------------------------------------------------------------------------------------
