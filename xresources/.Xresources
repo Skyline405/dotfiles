@@ -1,7 +1,7 @@
 #include ".config/xorg/themes/pumpkin_spice"
 
 !!! Extensions
-URxvt.perl-ext-common : default,matcher,url-select,tabbedex
+URxvt.perl-ext-common : default,matcher,url-select,tabbedex,clipboard
 URxvt.matcher.butto   : 1
 URxvt.urlLauncher     : google-chrome
 URxvt.underlineURLs   : true
@@ -24,6 +24,11 @@ URxvt.saveLines: 10000
 URxvt.scrollBar: false
 
 URxvt.depth: 32
+
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! URxvt.clipboard.autocopy: true
 
 ! URxvt*foreground:   #e0e0e0
 ! URxvt*background:   [70]#292d3e
