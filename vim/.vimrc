@@ -29,6 +29,7 @@ Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'lilydjwg/colorizer'
 
 " Formatters and linters
 Plug 'godlygeek/tabular'
@@ -119,7 +120,7 @@ endif
 " ==============================================================================
 " COmmands
 " ==============================================================================
-command W write
+command! W write
 
 " ==============================================================================
 " Mappings
