@@ -87,19 +87,25 @@ local tags_count = 9
 
 local screens = {{
 	{	name = 'web',
-		layout = awful.layout.suit.max
+		layout = awful.layout.suit.max,
+		icon = beautiful.icon.google_chrome,
 	},{ name = 'mail',
-		layout = awful.layout.suit.max
+		layout = awful.layout.suit.max,
+		icon = beautiful.icon.thunderbird,
 	},
 },{
 	{	name = 'code',
-		layout = awful.layout.suit.fair
+		layout = awful.layout.suit.fair,
+		icon = beautiful.icon.code,
 	},{ name = 'term',
-		layout = awful.layout.suit.fair
+		layout = awful.layout.suit.fair,
+		icon = beautiful.icon.terminal,
 	},{ name = 'debug',
-		layout = awful.layout.suit.fair
+		layout = awful.layout.suit.fair,
+		icon = beautiful.icon.bug,
 	},{ name = 'skype',
-		layout = awful.layout.suit.fair
+		layout = awful.layout.suit.fair,
+		icon = beautiful.icon.skype,
 	},
 }}
 
@@ -163,13 +169,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = myma
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
 	awful.button({ }, 1, function(t) t:view_only() end),
@@ -234,52 +234,21 @@ awful.screen.connect_for_each_screen(function(s)
 	if schema then
 		for i = 1, #schema do
 			local tag = schema[i]
+			tag.name = tag.name or i
 			tag.screen = s
 			tag.selected = (i == 1)
+			tag.icon_only = beautiful.taglist_icon_only
 			awful.tag.add(tag.name, tag)
 		end
 	else
 		awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 	end
 
-    -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-		awful.button({ }, 1, function () awful.layout.inc( 1) end),
-		awful.button({ }, 3, function () awful.layout.inc(-1) end),
-		awful.button({ }, 4, function () awful.layout.inc( 1) end),
-		awful.button({ }, 5, function () awful.layout.inc(-1) end)
-	))
-    -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+	beautiful.add_mywibox(s)
 
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-		mylauncher,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        -- s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
 end)
 -- }}}
 

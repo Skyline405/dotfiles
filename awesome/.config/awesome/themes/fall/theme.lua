@@ -2,39 +2,51 @@
 --   Fall awesome theme    --
 -- Author: Ruslan Anufriev --
 -----------------------------
-local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
+local theme_assets = require('beautiful.theme_assets')
+local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
-local themes_path = os.getenv("HOME") .. "/.config/awesome/themes/fall/"
+local gfs = require('gears.filesystem')
+local themes_path = os.getenv('HOME') .. '/.config/awesome/themes/fall/'
 
-local theme = {}
+local lain = require('lain')
+local markup = lain.util.markup
+local separators = lain.util.separators
+
+local wibox = require('wibox')
+local awful = require('awful')
+local gears = require('gears')
+
+--------------------------------------------------------------------------------
+--- Theme ---
+--------------------------------------------------------------------------------
+local theme         = {}
+theme.dir           = themes_path
 
 theme.font_size     = 9
-theme.font_family   = "xos4 Terminus"
-theme.font          = theme.font_family .. " " .. theme.font_size
+theme.font_family   = 'xos4 Terminus'
+theme.font          = theme.font_family .. ' ' .. theme.font_size
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#E15848"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = '#222222'
+theme.bg_focus      = '#E15848'
+theme.bg_urgent     = '#ff0000'
+theme.bg_minimize   = '#444444'
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = '#ffffff'
+theme.fg_focus      = '#ffffff'
+theme.fg_urgent     = '#ffffff'
+theme.fg_minimize   = '#ffffff'
 
 theme.useless_gap   = dpi(4)
 theme.border_width  = dpi(4)
-theme.border_normal = "#00000000"
-theme.border_focus  = "#E15848"
-theme.border_marked = "#91231c"
+theme.border_normal = '#222222'
+theme.border_focus  = '#E15848'
+theme.border_marked = '#91231c'
 
 theme.titlebar_enabled = false
 -- theme.titlebar_bg_normal = '#000000'
--- theme.titlebar_bg_focus = "#E15848"
+-- theme.titlebar_bg_focus = '#E15848'
 
 -- There are other variable sets
 -- overriding the default one when
@@ -47,15 +59,15 @@ theme.titlebar_enabled = false
 -- prompt_[fg|bg|fg_cursor|bg_cursor|font]
 -- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 -- Example:
---theme.taglist_bg_focus = "#ff0000"
+--theme.taglist_bg_focus = '#ff0000'
 
 -- Generate taglist squares:
 -- local taglist_square_size = dpi(4)
 -- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
---     taglist_square_size, theme.fg_normal
+    -- taglist_square_size, theme.fg_normal
 -- )
 -- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
---     taglist_square_size, theme.fg_normal
+    -- taglist_square_size, theme.fg_normal
 -- )
 
 -- Variables set for theming notifications:
@@ -68,46 +80,217 @@ theme.titlebar_enabled = false
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 
-theme.menu_submenu_icon = themes_path .. "icons/submenu.png"
-theme.menu_height = dpi(16)
+theme.menu_submenu_icon = themes_path .. 'icons/submenu.png'
+theme.menu_height = dpi(20)
 theme.menu_width  = dpi(170)
 theme.menu_border_width = 0
 
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+--theme.bg_widget = '#cc0000'
 
-theme.wallpaper = themes_path.."wallpapers/fall.png"
+theme.awesome_icon  = themes_path .. 'icons/arch_logo.png'
+theme.wallpaper     = themes_path..'wallpapers/fall.png'
 
 --- Tasklist ---
 theme.tasklist_plain_task_name = true
-theme.tasklist_disable_icon = true
+theme.tasklist_disable_icon    = true
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
-theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
-theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
-theme.layout_max = themes_path.."default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
-theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
-theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+theme.layout_fairh      = themes_path..'layouts/fairhw.png'
+theme.layout_fairv      = themes_path..'layouts/fairvw.png'
+theme.layout_floating   = themes_path..'layouts/floatingw.png'
+theme.layout_magnifier  = themes_path..'layouts/magnifierw.png'
+theme.layout_max        = themes_path..'layouts/maxw.png'
+theme.layout_fullscreen = themes_path..'layouts/fullscreenw.png'
+theme.layout_tilebottom = themes_path..'layouts/tilebottomw.png'
+theme.layout_tileleft   = themes_path..'layouts/tileleftw.png'
+theme.layout_tile       = themes_path..'layouts/tilew.png'
+theme.layout_tiletop    = themes_path..'layouts/tiletopw.png'
+theme.layout_spiral     = themes_path..'layouts/spiralw.png'
+theme.layout_dwindle    = themes_path..'layouts/dwindlew.png'
+theme.layout_cornernw   = themes_path..'layouts/cornernww.png'
+theme.layout_cornerne   = themes_path..'layouts/cornernew.png'
+theme.layout_cornersw   = themes_path..'layouts/cornersww.png'
+theme.layout_cornerse   = themes_path..'layouts/cornersew.png'
 
--- Generate Awesome icon:
-theme.awesome_icon = themes_path .. "icons/arch_logo.png"
+theme.taglist_icon_only = true
+
+theme.icon               = {}
+theme.icon.code          = theme.dir .. 'icons/white/code.png'
+theme.icon.terminal      = theme.dir .. 'icons/white/terminal.png'
+theme.icon.bug           = theme.dir .. 'icons/white/bug.png'
+theme.icon.skype         = theme.dir .. 'icons/white/skype.png'
+theme.icon.google_chrome = theme.dir .. 'icons/white/google_chrome.png'
+theme.icon.thunderbird   = theme.dir .. 'icons/white/thunderbird.png'
+theme.icon.ram           = theme.dir .. 'icons/white/ram.png'
+theme.icon.cpu           = theme.dir .. 'icons/white/cpu.png'
+theme.icon.hdd           = theme.dir .. 'icons/white/hdd.png'
+
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
+
+theme.color0  = '#393939'
+theme.color1  = '#EE9379'
+theme.color2  = '#E2FFC7'
+theme.color3  = '#FFFFB9'
+theme.color4  = '#EDE7B4'
+theme.color5  = '#E2BEB5'
+theme.color6  = '#6EB49D'
+theme.color7  = '#dddddd'
+theme.color8  = '#474747'
+theme.color9  = '#FF8D80'
+theme.color10 = '#DBFFB3'
+theme.color11 = '#FFBE64'
+theme.color12 = '#E15848'
+theme.color13 = '#94C7B5'
+theme.color14 = '#A2C3CC'
+theme.color15 = '#dddddd'
+theme.color16 = '#777E76'
+theme.color17 = '#343434'
+
+theme.wibar_height = dpi(22)
+
+--------------------------------------------------------------------------------
+--- Helpres ---
+--------------------------------------------------------------------------------
+local arrow_left = separators.arrow_left
+
+local function build_with_arrows(widgets)
+    local res = {}
+    local prev_bg = 'alpha'
+    for i = 1, #widgets do
+        local item = widgets[i]
+        local widget = item[1]
+        local bg = item[2] or theme.bg_normal
+        local fg = item[3] or theme.fg_normal
+
+        widget = wibox.container.background(widget, bg)
+        widget.fg = fg
+
+        table.insert(res, arrow_left(prev_bg, bg))
+        table.insert(res, widget)
+
+        prev_bg = bg
+    end
+    return res
+end
+
+--------------------------------------------------------------------------------
+--- Wibar and widgets ---
+--------------------------------------------------------------------------------
+
+-- Memory usage
+local mem_usage = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, ' ' .. mem_now.perc .. '% '))
+    end
+})
+local mem_usage_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        wibox.widget.imagebox(theme.icon.ram),
+        mem_usage.widget,
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
+
+-- CPU usage
+local cpu_usage = lain.widget.cpu({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, ' ' .. cpu_now.usage .. '% '))
+    end
+})
+local cpu_usage_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        wibox.widget.imagebox(theme.icon.cpu),
+        cpu_usage.widget,
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
+
+-- HDD usage (Gio/Glib >= 2.54 required)
+-- local hdd_usage = lain.widget.fs({
+    -- settings = function()
+        -- local units = fs_now['/'].units
+        -- local used = fs_now['/'].used
+        -- local size = fs_now['/'].size
+        -- widget:set_markup(markup.font(theme.font, ' '..used..'/'..size..' '..units))
+    -- end
+-- })
+-- local hdd_usage_widget = wibox.container.margin(
+    -- wibox.widget {
+        -- layout = wibox.layout.align.horizontal,
+        -- wibox.widget.imagebox(theme.icon.hdd),
+        -- hdd_usage.widget,
+    -- }, dpi(2), dpi(3), dpi(2), dpi(2)
+-- )
+
+-- CPU temperature
+-- local cpu_temp = lain.widget.temp({
+    -- settings = function()
+        -- widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
+    -- end
+-- })
+-- local cpu_temp_widget = wibox.container.margin(
+    -- wibox.widget {
+        -- layout = wibox.layout.align.horizontal,
+        -- wibox.widget.imagebox(theme.icon.cpu),
+        -- cpu_temp.widget,
+    -- }, dpi(2), dpi(3), dpi(2), dpi(2)
+-- )
+
+-- Clock
+local mytextclock = wibox.widget.textclock(), theme.clock_bg
+
+-- Keybord layout
+local mykeyboardlayout = awful.widget.keyboardlayout(), theme.layoutbox_bg
+
+
+function theme.add_mywibox(s)
+    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = wibox.container.margin(awful.widget.layoutbox(s), dpi(3), dpi(3), dpi(3), dpi(3))
+    s.mylayoutbox:buttons(gears.table.join(
+        awful.button({ }, 1, function () awful.layout.inc( 1) end),
+        awful.button({ }, 3, function () awful.layout.inc(-1) end),
+        awful.button({ }, 4, function () awful.layout.inc( 1) end),
+        awful.button({ }, 5, function () awful.layout.inc(-1) end)
+    ))
+
+    local mysystray = wibox.container.margin(wibox.widget.systray(), dpi(4), dpi(4), dpi(2), dpi(2))
+
+    --- { widget, bg_color, fg_color } ---
+    local widget_list = build_with_arrows({
+        { mysystray,         'alpha' },
+        { mykeyboardlayout,  '#474747' },
+
+        { cpu_usage_widget,  '#4B696D' },
+        { mem_usage_widget,  '#6EB49D' },
+
+        { mytextclock,       '#E15848' },
+        { s.mylayoutbox,     '#474747' },
+    })
+    widget_list.layout = wibox.layout.fixed.horizontal
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({ position = 'top', screen = s })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        wibox.container.margin(mylauncher, dpi(10), dpi(10)),
+        {
+            layout = wibox.layout.fixed.horizontal,
+            s.mytaglist,
+            s.mypromptbox,
+        },
+        widget_list
+    }
+
+end
 
 return theme
 
