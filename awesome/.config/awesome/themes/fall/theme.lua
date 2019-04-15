@@ -233,10 +233,10 @@ local cpu_usage_widget = wibox.container.margin(
 
 -- Network status
 local eth_device = 'enp4s0'
+local wifi_device = 'wlp2s0'
 local eth_icon   = wibox.widget.imagebox()
 local wifi_icon  = wibox.widget.imagebox()
 local net_status = lain.widget.net({
-    iface = eth_device,
     eth_state = 'on',
     wifi_state = 'on',
     settings = function()
@@ -249,24 +249,23 @@ local net_status = lain.widget.net({
             end
         end
 
-        -- TODO
-        -- local wlan0 = net_now.devices.wlan0
-        -- if wlan0 then
-            -- if wlan0.wifi then
-                -- local signal = wlan0.signal
-                -- if signal < -83 then
-                    -- wifi_icon:set_image(theme.icon.wifi_nosignal)
-                -- elseif signal < -70 then
-                    -- wifi_icon:set_image(theme.icon.wifi_low)
-                -- elseif signal < -53 then
-                    -- wifi_icon:set_image(theme.icon.wifi_medium)
-                -- elseif signal >= -53 then
-                    -- wifi_icon:set_image(theme.icon.wifi_max)
-                -- end
-            -- else
-                -- wifi_icon:set_image()
-            -- end
-        -- end
+        local wlan0 = net_now.devices[wifi_device]
+        if wlan0 then
+            if wlan0.wifi then
+                local signal = wlan0.signal
+                if signal < -83 then
+                    wifi_icon:set_image(theme.icon.wifi_nosignal)
+                elseif signal < -70 then
+                    wifi_icon:set_image(theme.icon.wifi_low)
+                elseif signal < -53 then
+                    wifi_icon:set_image(theme.icon.wifi_medium)
+                elseif signal >= -53 then
+                    wifi_icon:set_image(theme.icon.wifi_max)
+                end
+            else
+                wifi_icon:set_image()
+            end
+        end
     end
 })
 local net_status_widget = wibox.container.margin(

@@ -15,7 +15,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 require("awful.hotkeys_popup.keys")
 
 -- Load Debian menu entries
-local debian = require("debian.menu")
+-- local debian = require("debian.menu")
 
 -- External libs
 local lain = require("lain")
@@ -65,7 +65,7 @@ beautiful.init(awful.util.getdir("config") .. "/themes/fall/theme.lua")
 local terminal   = "urxvt"
 local editor     = os.getenv("EDITOR") or "vim"
 local editor_cmd = terminal .. " -e " .. editor
-local browser    = 'google-chrome'
+local browser    = 'chromium' -- or 'google-chrome'
 local screenlock = 'i3lock -t -i ' .. beautiful.wallpaper
 
 ----------------------------------------------------------------------------------------------------
@@ -74,11 +74,11 @@ local screenlock = 'i3lock -t -i ' .. beautiful.wallpaper
 local modkey = "Mod4"
 local altkey = 'Mod1'
 
-local MOUSE_LEFT        = 1
-local MOUSE_CENTER      = 2
-local MOUSE_RIGHT       = 3
-local MOUSE_SCROLL_UP   = 4
-local MOUSE_SCROLL_DOWN = 5
+-- local MOUSE_LEFT        = 1
+-- local MOUSE_CENTER      = 2
+-- local MOUSE_RIGHT       = 3
+-- local MOUSE_SCROLL_UP   = 4
+-- local MOUSE_SCROLL_DOWN = 5
 
 ----------------------------------------------------------------------------------------------------
 --- Screen layouts ---
@@ -87,7 +87,7 @@ local tags_count = 9
 
 local screens = {{
 	{	name = 'web',
-		layout = awful.layout.suit.max,
+		layout = awful.layout.suit.fair,
 		icon = beautiful.icon.google_chrome,
 	},{ name = 'mail',
 		layout = awful.layout.suit.max,
@@ -109,6 +109,9 @@ local screens = {{
 	},
 }}
 
+if screen.count() == 1 then
+	screens = {{ table.unpack(screens[1]), table.unpack(screens[2]) }}
+end
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -158,7 +161,7 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		{ "Debian", debian.menu.Debian_menu.Debian },
+		-- { "Debian", debian.menu.Debian_menu.Debian },
 		{ "open terminal", terminal }
 	}
 })
