@@ -215,6 +215,7 @@ local mem_usage_widget = wibox.container.margin(
         mem_usage.widget,
     }, dpi(2), dpi(3), dpi(2), dpi(2)
 )
+-- TODO: create tooltip on mouse enter
 
 -- CPU usage
 local cpu_usage = lain.widget.cpu({
@@ -291,7 +292,7 @@ local volume = lain.widget.alsa({
         if volume_now.status == 'on' then
             if tonumber(volume_now.level) > 0 then
                 local idx = map_range(volume_now.level, 0, 100, 1, #volume_icons)
-                idx = tonumber(string.format('%.0f', idx))
+                idx = gears.math.round(idx)
                 volume_icon:set_image(volume_icons[idx])
             else
                 volume_icon:set_image(theme.icon.volume_0)
@@ -316,7 +317,7 @@ volume_widget:buttons(gears.table.join(
         awful.spawn(string.format("%s -e alsamixer", terminal))
     end),
     awful.button({}, 2, function() -- middle click
-        os.execute(string.format("%s set %s 100%%", volume.cmd, volume.channel))
+        os.execute(string.format("%s set %s 50%%", volume.cmd, volume.channel))
         volume.update()
     end),
     awful.button({}, 3, function() -- right click
