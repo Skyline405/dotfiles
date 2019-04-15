@@ -139,6 +139,9 @@ theme.icon.volume_low       = theme.dir .. 'icons/white/volume_low.png'
 theme.icon.volume_lower     = theme.dir .. 'icons/white/volume_lower.png'
 theme.icon.volume_0         = theme.dir .. 'icons/white/volume_0.png'
 theme.icon.volume_off       = theme.dir .. 'icons/white/volume_off.png'
+theme.icon.task_complete    = theme.dir .. 'icons/white/task_complete.png'
+theme.icon.task_edit        = theme.dir .. 'icons/white/task_edit.png'
+theme.icon.task_wait        = theme.dir .. 'icons/white/task_wait.png'
 
 
 -- Define the icon theme for application icons. If not set then the icons
@@ -330,6 +333,27 @@ volume_widget:buttons(gears.table.join(
     end)
 ))
 
+-- Taskwarrior
+local taskwar_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        wibox.widget.imagebox(theme.icon.task_edit),
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
+lain.widget.contrib.task.attach(taskwar_widget, {
+    -- do not colorize output
+    followtag = true,
+    -- show_cmd = 'task list rc.verbose:label',
+    notification_preset = {
+        font    = theme.font,
+        icon    = theme.icon.task_wait,
+        timeout = 0,
+    }
+})
+taskwar_widget:buttons(gears.table.join(
+    awful.button({}, 1, lain.widget.contrib.task.prompt)
+))
+
 -- HDD usage (Gio/Glib >= 2.54 required)
 -- local hdd_usage = lain.widget.fs({
     -- settings = function()
@@ -394,16 +418,17 @@ function theme.add_mywibox(s)
 
     --- { widget, bg_color, fg_color } ---
     local widget_list = build_with_arrows({
-        { mysystray,          'alpha' },
-        { mykeyboardlayout,   '#474747' },
+        { mysystray,          'alpha',    },
+        { mykeyboardlayout,   '#474747',  },
 
-        { cpu_usage_widget,   '#4B696D' },
-        { mem_usage_widget,   '#6EB49D' },
-        { volume_widget,      '#474747' },
-        { net_status_widget,  '#777E76' },
+        { taskwar_widget,     '#777E76',  },
+        { cpu_usage_widget,   '#4B696D',  },
+        { mem_usage_widget,   '#6EB49D',  },
+        { volume_widget,      '#474747',  },
+        { net_status_widget,  '#777E76',  },
 
-        { mytextclock,        '#E15848' },
-        { s.mylayoutbox,      '#474747' },
+        { mytextclock,        '#E15848',  },
+        { s.mylayoutbox,      '#474747',  },
     })
     widget_list.layout = wibox.layout.fixed.horizontal
 
