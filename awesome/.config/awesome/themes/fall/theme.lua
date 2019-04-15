@@ -117,22 +117,35 @@ theme.layout_cornerse   = themes_path..'layouts/cornersew.png'
 
 theme.taglist_icon_only = true
 
-theme.icon               = {}
-theme.icon.code          = theme.dir .. 'icons/white/code.png'
-theme.icon.terminal      = theme.dir .. 'icons/white/terminal.png'
-theme.icon.bug           = theme.dir .. 'icons/white/bug.png'
-theme.icon.skype         = theme.dir .. 'icons/white/skype.png'
-theme.icon.google_chrome = theme.dir .. 'icons/white/google_chrome.png'
-theme.icon.thunderbird   = theme.dir .. 'icons/white/thunderbird.png'
-theme.icon.ram           = theme.dir .. 'icons/white/ram.png'
-theme.icon.cpu           = theme.dir .. 'icons/white/cpu.png'
-theme.icon.hdd           = theme.dir .. 'icons/white/hdd.png'
+theme.icon                  = {}
+theme.icon.code             = theme.dir .. 'icons/white/code.png'
+theme.icon.terminal         = theme.dir .. 'icons/white/terminal.png'
+theme.icon.bug              = theme.dir .. 'icons/white/bug.png'
+theme.icon.skype            = theme.dir .. 'icons/white/skype.png'
+theme.icon.google_chrome    = theme.dir .. 'icons/white/google_chrome.png'
+theme.icon.thunderbird      = theme.dir .. 'icons/white/thunderbird.png'
+theme.icon.ram              = theme.dir .. 'icons/white/ram.png'
+theme.icon.cpu              = theme.dir .. 'icons/white/cpu.png'
+theme.icon.hdd              = theme.dir .. 'icons/white/hdd.png'
+theme.icon.net_connected    = theme.dir .. 'icons/white/net_connected.png'
+theme.icon.net_disconnected = theme.dir .. 'icons/white/net_disconnected.png'
+theme.icon.wifi_max         = theme.dir .. 'icons/white/wifi_max.png'
+theme.icon.wifi_medium      = theme.dir .. 'icons/white/wifi_medium.png'
+theme.icon.wifi_low         = theme.dir .. 'icons/white/wifi_low.png'
+theme.icon.wifi_nosignal    = theme.dir .. 'icons/white/wifi_nosignal.png'
+theme.icon.volume_max       = theme.dir .. 'icons/white/volume_max.png'
+theme.icon.volume_medium    = theme.dir .. 'icons/white/volume_medium.png'
+theme.icon.volume_low       = theme.dir .. 'icons/white/volume_low.png'
+theme.icon.volume_lower     = theme.dir .. 'icons/white/volume_lower.png'
+theme.icon.volume_0         = theme.dir .. 'icons/white/volume_0.png'
+theme.icon.volume_off       = theme.dir .. 'icons/white/volume_off.png'
 
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
+-- DEBUG
 theme.color0  = '#393939'
 theme.color1  = '#EE9379'
 theme.color2  = '#E2FFC7'
@@ -179,6 +192,9 @@ local function build_with_arrows(widgets)
     return res
 end
 
+function map_range(s, a1, a2, b1, b2)
+    return b1 + (s-a1) * (b2-b1) / (a2-a1)
+end
 --------------------------------------------------------------------------------
 --- Wibar and widgets ---
 --------------------------------------------------------------------------------
@@ -210,6 +226,109 @@ local cpu_usage_widget = wibox.container.margin(
         cpu_usage.widget,
     }, dpi(2), dpi(3), dpi(2), dpi(2)
 )
+
+-- Network status
+local eth_device = 'enp4s0'
+local eth_icon   = wibox.widget.imagebox()
+local wifi_icon  = wibox.widget.imagebox()
+local net_status = lain.widget.net({
+    iface = eth_device,
+    eth_state = 'on',
+    wifi_state = 'on',
+    settings = function()
+        local eth = net_now.devices[eth_device]
+        if eth then
+            if eth.ethernet then
+                eth_icon:set_image(theme.icon.net_connected)
+            else
+                eth_icon:set_image(theme.icon.net_disconnected)
+            end
+        end
+
+        -- TODO
+        -- local wlan0 = net_now.devices.wlan0
+        -- if wlan0 then
+            -- if wlan0.wifi then
+                -- local signal = wlan0.signal
+                -- if signal < -83 then
+                    -- wifi_icon:set_image(theme.icon.wifi_nosignal)
+                -- elseif signal < -70 then
+                    -- wifi_icon:set_image(theme.icon.wifi_low)
+                -- elseif signal < -53 then
+                    -- wifi_icon:set_image(theme.icon.wifi_medium)
+                -- elseif signal >= -53 then
+                    -- wifi_icon:set_image(theme.icon.wifi_max)
+                -- end
+            -- else
+                -- wifi_icon:set_image()
+            -- end
+        -- end
+    end
+})
+local net_status_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        eth_icon, wifi_icon,
+        net_status.widget,
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
+
+-- Volume control ALSA
+local volume_icons = {
+    theme.icon.volume_lower,
+    theme.icon.volume_medium,
+    theme.icon.volume_max,
+}
+local volume_icon   = wibox.widget.imagebox()
+local volume = lain.widget.alsa({
+    timeout = 2,
+    followtag = true,
+    notification_preset = { font = theme.font, fg = theme.fg_normal },
+    settings = function()
+        if volume_now.status == 'on' then
+            if tonumber(volume_now.level) > 0 then
+                local idx = map_range(volume_now.level, 0, 100, 1, #volume_icons)
+                idx = tonumber(string.format('%.0f', idx))
+                volume_icon:set_image(volume_icons[idx])
+            else
+                volume_icon:set_image(theme.icon.volume_0)
+            end
+        else
+            volume_icon:set_image(theme.icon.volume_off)
+        end
+        widget:set_markup(markup.font(theme.font, ' ' .. volume_now.level .. '% '))
+    end
+})
+
+local volume_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        volume_icon,
+        volume.widget,
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
+
+volume_widget:buttons(gears.table.join(
+    awful.button({}, 1, function() -- left click
+        awful.spawn(string.format("%s -e alsamixer", terminal))
+    end),
+    awful.button({}, 2, function() -- middle click
+        os.execute(string.format("%s set %s 100%%", volume.cmd, volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 3, function() -- right click
+        os.execute(string.format("%s set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 4, function() -- scroll up
+        os.execute(string.format("%s set %s 1%%+", volume.cmd, volume.channel))
+        volume.update()
+    end),
+    awful.button({}, 5, function() -- scroll down
+        os.execute(string.format("%s set %s 1%%-", volume.cmd, volume.channel))
+        volume.update()
+    end)
+))
 
 -- HDD usage (Gio/Glib >= 2.54 required)
 -- local hdd_usage = lain.widget.fs({
@@ -248,6 +367,17 @@ local mytextclock = wibox.widget.textclock(), theme.clock_bg
 -- Keybord layout
 local mykeyboardlayout = awful.widget.keyboardlayout(), theme.layoutbox_bg
 
+-- Calendar
+local calendar_widget = lain.widget.cal({
+    attach_to = { mytextclock },
+    followtag = true,
+    notification_preset = {
+        font = theme.font,
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
+    }
+})
+
 
 function theme.add_mywibox(s)
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
@@ -264,14 +394,16 @@ function theme.add_mywibox(s)
 
     --- { widget, bg_color, fg_color } ---
     local widget_list = build_with_arrows({
-        { mysystray,         'alpha' },
-        { mykeyboardlayout,  '#474747' },
+        { mysystray,          'alpha' },
+        { mykeyboardlayout,   '#474747' },
 
-        { cpu_usage_widget,  '#4B696D' },
-        { mem_usage_widget,  '#6EB49D' },
+        { cpu_usage_widget,   '#4B696D' },
+        { mem_usage_widget,   '#6EB49D' },
+        { volume_widget,      '#474747' },
+        { net_status_widget,  '#777E76' },
 
-        { mytextclock,       '#E15848' },
-        { s.mylayoutbox,     '#474747' },
+        { mytextclock,        '#E15848' },
+        { s.mylayoutbox,      '#474747' },
     })
     widget_list.layout = wibox.layout.fixed.horizontal
 
