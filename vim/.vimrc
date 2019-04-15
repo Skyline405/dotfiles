@@ -99,6 +99,8 @@ set showcmd					" Show incomplete command in status bar
 set wildmenu				" vim commands autocompletion
 set wildmode=list:longest,full
 
+set backspace=indent,eol,start
+
 set mouse=a					" can use mouse like other editors
 set t_Co=256
 set background=dark
@@ -118,7 +120,7 @@ if &term =~ '256color'
 endif
 
 " ==============================================================================
-" COmmands
+" Commands
 " ==============================================================================
 command! W write
 
@@ -137,13 +139,20 @@ noremap <C-j> <C-w><Down>
 noremap <C-l> <C-w><Right>
 noremap <C-h> <C-w><Left>
 
+" Disable entering to ex mode
 map Q <nop>
 
-" Disable arrows (coz I use it)
-map <Left> <nop>
-map <Right> <nop>
-map <Up> <nop>
-map <Down> <nop>
+" Disable arrows (coz I don't wanna use it)
+map <Left>   <nop>
+map <Right>  <nop>
+map <Up>     <nop>
+map <Down>   <nop>
+
+" Disable ctrl + arrows to navigate
+noremap <C-Left>   <nop>
+noremap <C-Right>  <nop>
+noremap <C-Up>     <nop>
+noremap <C-Down>   <nop>
 
 " Buffers navigation maps
 
@@ -155,7 +164,7 @@ else
 endif
 map <leader>vr :source $MYVIMRC<CR>
 
-" Copy/Paste system clipboard
+" Copy/Paste system clipboard FIXME: make separated buffers
 " More info see here:
 "	https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
 if has('clipboard')
