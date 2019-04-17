@@ -154,7 +154,27 @@ noremap <C-Right>  <nop>
 noremap <C-Up>     <nop>
 noremap <C-Down>   <nop>
 
+" Insert new line and stay in normal mode
+nnoremap <C-o> o<esc>
+nnoremap <C-O> O<esc>
+
+" Navigate betwen display lines
+noremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
+noremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
+
 " Buffers navigation maps
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>= <Plug>AirlineSelectNextTab
+nmap <leader>x :bd<CR>
 
 " Edit .vimrc
 if has('nvim')
@@ -176,8 +196,8 @@ if has('clipboard')
 	" noremap <Leader>p "+p
 
 	" Primary clipboard (Paste on MouseWheel) [unnamed]
-	" noremap <Leader>Y "*y
-	" noremap <Leader>P "*p
+	noremap <Leader>y "*y
+	noremap <Leader>p "*p
 endif
 
 " Save buffers undo/redo history
@@ -237,16 +257,17 @@ endfu
 " ==============================================================================
 " Airline options
 " ==============================================================================
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts = 1
 " let g:airline_left_sep=''
 " let g:airline_right_sep=''
-let g:airline_theme='onedark'
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=0
+let g:airline_theme = 'onedark'
+let g:airline#extensions#hunks#enabled = 0
+let g:airline#extensions#branch#enabled = 0
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#keymap_ignored_filetypes = ['vimfiler', 'nerdtree']
 
 " ==============================================================================
 " Tabular plugin
@@ -267,12 +288,29 @@ endif
 " Easymotion plugin
 " ==============================================================================
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap <leader>s <Plug>(easymotion-overwin-f2)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+" Need one more keystroke, but on average, it may be more comfortable.
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
 
+map  <leader>F <Plug>(easymotion-bd-f2)
+nmap <leader>F <Plug>(easymotion-overwin-f2)
+
+" JK motions: Line motions
+nmap <Leader>j <Plug>(easymotion-j)
+nmap <Leader>k <Plug>(easymotion-k)
+
+" Move to line
+map  <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+map  <Leader>e <Plug>(easymotion-bd-e)
+nmap <Leader>e <Plug>(easymotion-overwin-e)
+
+map  <Leader>b <Plug>(easymotion-bd-b)
+nmap <Leader>b <Plug>(easymotion-overwin-b)
