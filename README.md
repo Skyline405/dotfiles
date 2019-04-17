@@ -29,7 +29,7 @@ $ make unstow
 | :g!//d         | delete lines NOT contains highlighted value              |
 | :v/./,/./-j    | replace each entry many empty lines by one empty line    |
 | :'<,'>s/$/\r/g | add empty line between all lines                         |
-| :%s/\s\+$//g   | delete trailing whitespaces                              |
+| :%s/\s\\+$//g   | delete trailing whitespaces                             |
 
 ---
 
