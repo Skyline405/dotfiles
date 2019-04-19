@@ -87,7 +87,7 @@ local tags_count = 9
 
 local screens = {{
 	{	name = 'web',
-		layout = awful.layout.suit.fair,
+		layout = awful.layout.suit.tile,
 		icon = beautiful.icon.google_chrome,
 	},{ name = 'mail',
 		layout = awful.layout.suit.max,
@@ -95,16 +95,16 @@ local screens = {{
 	},
 },{
 	{	name = 'code',
-		layout = awful.layout.suit.fair,
+		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.code,
 	},{ name = 'term',
-		layout = awful.layout.suit.fair,
+		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.terminal,
 	},{ name = 'debug',
-		layout = awful.layout.suit.fair,
+		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.bug,
 	},{ name = 'skype',
-		layout = awful.layout.suit.fair,
+		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.skype,
 	},
 }}
@@ -152,21 +152,21 @@ end
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+   { "hotkeys", function() return false, hotkeys_popup.show_help end, beautiful.icon.keyboard },
+   { "manual", terminal .. " -e man awesome", beautiful.icon.bookmark },
+   { "edit config", editor_cmd .. " " .. awesome.conffile, beautiful.icon.edit_props },
+   { "restart", awesome.restart, beautiful.icon.reboot },
+   { "quit", function() awesome.quit() end, beautiful.icon.poweroff }
 }
 
 mymainmenu = awful.menu({ items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
 		-- { "Debian", debian.menu.Debian_menu.Debian },
-		{ "open terminal", terminal }
+		{ "open terminal", terminal, beautiful.icon.terminal }
 	}
 })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+mylauncher = awful.widget.launcher({ image = beautiful.menu_icon, menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -235,12 +235,13 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Each screen has its own tag table.
 	local schema = screens[s.index]
 	if schema then
-		for i = 1, #schema do
-			local tag = schema[i]
+		for i = 1, 9 do
+			local tag = schema[i] or {}
 			tag.name = tag.name or i
+			tag.layout = tag.layout or awful.layout.layouts[1]
 			tag.screen = s
 			tag.selected = (i == 1)
-			tag.icon_only = beautiful.taglist_icon_only
+			tag.icon_only = (tag.icon and beautiful.taglist_icon_only)
 			awful.tag.add(tag.name, tag)
 		end
 	else
@@ -248,7 +249,9 @@ awful.screen.connect_for_each_screen(function(s)
 	end
 
     s.mypromptbox = awful.widget.prompt()
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+
+	s.mytasklist_buttons = tasklist_buttons
 
 	beautiful.add_mywibox(s)
 
@@ -482,6 +485,11 @@ awful.rules.rules = {
 		}
     },
 
+    -- Add titlebars to normal clients and dialogs
+	{ rule_any = {type = { "normal", "dialog" }
+		}, properties = { titlebars_enabled = beautiful.titlebar_enabled }
+	},
+
     -- Floating clients.
     { rule_any = {
         instance = {
@@ -506,22 +514,28 @@ awful.rules.rules = {
           "AlarmWindow",  -- Thunderbird's calendar.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-      }, properties = { floating = true }},
+      }, properties = { floating = true, titlebars_enabled = true }},
 
-    -- Add titlebars to normal clients and dialogs
-	{ rule_any = {type = { "normal", "dialog" }
-		}, properties = { titlebars_enabled = beautiful.titlebar_enabled }
+	{ -- Open devtools in tags for it
+		rule_any = {
+			-- class = { "Google-chrome", "Firefox", "Chromium" },
+			role = { 'pop-up', 'toolbox' },
+		}, properties = { screen = 2, tag = "debug" }
 	},
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+	-- Set Firefox to always map on the tag named "2" on screen 1.
+	-- { rule = { class = "Firefox" },
+	--   properties = { screen = 1, tag = "2" } },
 	-- DISPLAY 1
-	-- { rule = { class = "Firefox" }, properties = { screen = 1, tag = "1" } },
-	-- { rule = { class = "Google-chrome" }, properties = { screen = 1, tag = TAG.WEB } },
-	-- { rule = { class = "Thunderbird" }, properties = { screen = 1, tag = 2 } },
+	{ --Browsers
+		rule_any = {
+			-- class = { "Google-chrome", 'Firefox', 'Chromium' },
+			role = { "browser" }
+		}, properties = { screen = 1, tag = "web" }
+	},
+	{ rule = { class = "Thunderbird" }, properties = { screen = 1, tag = "mail" } },
 	-- -- DISPLAY 2
-	-- { rule = { class = "Skype" }, properties = { screen = 2, tag = "4" } },
+	{ rule = { class = "Skype" }, properties = { screen = 2, tag = "skype" } },
 }
 -- }}}
 

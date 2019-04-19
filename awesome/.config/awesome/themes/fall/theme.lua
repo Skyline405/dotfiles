@@ -61,14 +61,17 @@ theme.titlebar_enabled = false
 -- Example:
 --theme.taglist_bg_focus = '#ff0000'
 
+theme.tasklist_bg_focus = theme.bg_normal
+theme.tasklist_fg_focus = theme.fg_normal
+
 -- Generate taglist squares:
--- local taglist_square_size = dpi(4)
--- theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    -- taglist_square_size, theme.fg_normal
--- )
--- theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    -- taglist_square_size, theme.fg_normal
--- )
+local taglist_square_size = dpi(4)
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+    taglist_square_size, theme.fg_normal
+)
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+    taglist_square_size, theme.fg_normal
+)
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -80,9 +83,10 @@ theme.titlebar_enabled = false
 -- menu_[bg|fg]_[normal|focus]
 -- menu_[border_color|border_width]
 
+theme.menu_icon         = themes_path .. 'icons/arch_logo.png'
 theme.menu_submenu_icon = themes_path .. 'icons/submenu.png'
-theme.menu_height = dpi(20)
-theme.menu_width  = dpi(170)
+theme.menu_height       = dpi(20)
+theme.menu_width        = dpi(170)
 theme.menu_border_width = 0
 
 -- You can add as many variables as
@@ -91,7 +95,7 @@ theme.menu_border_width = 0
 --theme.bg_widget = '#cc0000'
 
 theme.awesome_icon  = themes_path .. 'icons/arch_logo.png'
-theme.wallpaper     = themes_path..'wallpapers/fall.png'
+theme.wallpaper     = themes_path .. 'wallpapers/fall.png'
 
 --- Tasklist ---
 theme.tasklist_plain_task_name = true
@@ -142,6 +146,11 @@ theme.icon.volume_off       = theme.dir .. 'icons/white/volume_off.png'
 theme.icon.task_complete    = theme.dir .. 'icons/white/task_complete.png'
 theme.icon.task_edit        = theme.dir .. 'icons/white/task_edit.png'
 theme.icon.task_wait        = theme.dir .. 'icons/white/task_wait.png'
+theme.icon.bookmark         = theme.dir .. 'icons/white/bookmark.png'
+theme.icon.poweroff         = theme.dir .. 'icons/white/poweroff.png'
+theme.icon.reboot           = theme.dir .. 'icons/white/reboot.png'
+theme.icon.keyboard         = theme.dir .. 'icons/white/keyboard.png'
+theme.icon.edit_props       = theme.dir .. 'icons/white/edit_props.png'
 
 
 -- Define the icon theme for application icons. If not set then the icons
@@ -434,16 +443,18 @@ function theme.add_mywibox(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = 'top', screen = s })
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, s.mytasklist_buttons)
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
-        wibox.container.margin(mylauncher, dpi(10), dpi(10)),
         {
+            wibox.container.margin(mylauncher, dpi(10), dpi(10)),
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             s.mypromptbox,
         },
+        s.mytasklist,
         widget_list
     }
 
