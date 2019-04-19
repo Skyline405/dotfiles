@@ -2,7 +2,8 @@
 --   Fall awesome theme    --
 -- Author: Ruslan Anufriev --
 -----------------------------
-local theme_assets = require('beautiful.theme_assets')
+local theme_assets = require('core.theme_assets')
+
 local xresources = require('beautiful.xresources')
 local dpi = xresources.apply_dpi
 
@@ -65,12 +66,12 @@ theme.tasklist_bg_focus = theme.bg_normal
 theme.tasklist_fg_focus = theme.fg_normal
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
-theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    taglist_square_size, theme.fg_normal
+local tags_client_indicator_size = dpi(4)
+theme.taglist_squares_sel = theme_assets.tags_client_indicator(
+    tags_client_indicator_size, theme.fg_normal
 )
-theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    taglist_square_size, theme.fg_normal
+theme.taglist_squares_unsel = theme_assets.tags_client_indicator(
+    tags_client_indicator_size, theme.fg_normal
 )
 
 -- Variables set for theming notifications:
@@ -157,25 +158,25 @@ theme.icon.edit_props       = theme.dir .. 'icons/white/edit_props.png'
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
--- DEBUG
-theme.color0  = '#393939'
-theme.color1  = '#EE9379'
-theme.color2  = '#E2FFC7'
-theme.color3  = '#FFFFB9'
-theme.color4  = '#EDE7B4'
-theme.color5  = '#E2BEB5'
-theme.color6  = '#6EB49D'
-theme.color7  = '#dddddd'
-theme.color8  = '#474747'
-theme.color9  = '#FF8D80'
-theme.color10 = '#DBFFB3'
-theme.color11 = '#FFBE64'
-theme.color12 = '#E15848'
-theme.color13 = '#94C7B5'
-theme.color14 = '#A2C3CC'
-theme.color15 = '#dddddd'
-theme.color16 = '#777E76'
-theme.color17 = '#343434'
+-- -- DEBUG
+-- theme.color0  = '#393939'
+-- theme.color1  = '#EE9379'
+-- theme.color2  = '#E2FFC7'
+-- theme.color3  = '#FFFFB9'
+-- theme.color4  = '#EDE7B4'
+-- theme.color5  = '#E2BEB5'
+-- theme.color6  = '#6EB49D'
+-- theme.color7  = '#dddddd'
+-- theme.color8  = '#474747'
+-- theme.color9  = '#FF8D80'
+-- theme.color10 = '#DBFFB3'
+-- theme.color11 = '#FFBE64'
+-- theme.color12 = '#E15848'
+-- theme.color13 = '#94C7B5'
+-- theme.color14 = '#A2C3CC'
+-- theme.color15 = '#dddddd'
+-- theme.color16 = '#777E76'
+-- theme.color17 = '#343434'
 
 theme.wibar_height = dpi(22)
 
