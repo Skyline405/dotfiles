@@ -96,7 +96,7 @@ theme.menu_border_width = 0
 --theme.bg_widget = '#cc0000'
 
 theme.awesome_icon  = themes_path .. 'icons/arch_logo.png'
-theme.wallpaper     = themes_path .. 'wallpapers/forest.jpg'
+theme.wallpaper     = themes_path .. 'wallpapers/forest.png'
 
 --- Tasklist ---
 theme.tasklist_plain_task_name = true

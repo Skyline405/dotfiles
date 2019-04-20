@@ -66,7 +66,7 @@ local terminal   = "urxvt"
 local editor     = os.getenv("EDITOR") or "vim"
 local editor_cmd = terminal .. " -e " .. editor
 local browser    = 'chromium' -- or 'google-chrome'
-local screenlock = 'i3lock -t -i ' .. beautiful.wallpaper
+local screenlock = 'i3lock -t'
 
 ----------------------------------------------------------------------------------------------------
 --- Keys ---
@@ -342,8 +342,10 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey },            "r",     function ()
+		local result = os.execute('rofi -show run')
+		if result ~= true then awful.screen.focused().mypromptbox:run() end
+	end, {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x", function ()
                   awful.prompt.run {
@@ -404,8 +406,12 @@ clientkeys = gears.table.join(
 	-- Launch programs
     awful.key({ modkey, "Shift" }, "w", function () awful.spawn(browser) end,
 			  {description = "Launch browser ("..browser..")", group = "launcher"}),
-	awful.key({ "Control", altkey }, "l", function () os.execute(screenlock) end,
-              {description = "lock screen", group = "hotkeys"})
+	awful.key({ "Control", altkey }, "l", function ()
+		local img = '/tmp/i3lock_wall.png'
+		os.execute('scrot ' .. img)
+		os.execute('convert ' .. img .. ' -blur 0x3 ' .. img)
+		os.execute(screenlock .. ' -i ' .. img)
+	end, {description = "lock screen", group = "hotkeys"})
 )
 
 -- Bind all key numbers to tags.
