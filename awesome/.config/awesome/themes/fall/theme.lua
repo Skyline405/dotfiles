@@ -152,6 +152,9 @@ theme.icon.poweroff         = theme.dir .. 'icons/white/poweroff.png'
 theme.icon.reboot           = theme.dir .. 'icons/white/reboot.png'
 theme.icon.keyboard         = theme.dir .. 'icons/white/keyboard.png'
 theme.icon.edit_props       = theme.dir .. 'icons/white/edit_props.png'
+theme.icon.intellij         = theme.dir .. 'icons/white/intellij.png'
+theme.icon.python           = theme.dir .. 'icons/white/python.png'
+theme.icon.sublime          = theme.dir .. 'icons/white/sublime.png'
 
 
 -- Define the icon theme for application icons. If not set then the icons
@@ -431,7 +434,7 @@ function theme.add_mywibox(s)
         { mysystray,          'alpha',    },
         { mykeyboardlayout,   '#474747',  },
 
-        { taskwar_widget,     '#777E76',  },
+        -- { taskwar_widget,     '#777E76',  },
         { cpu_usage_widget,   '#4B696D',  },
         { mem_usage_widget,   '#6EB49D',  },
         { volume_widget,      '#474747',  },

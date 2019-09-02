@@ -92,6 +92,9 @@ local screens = {{
 	},{ name = 'mail',
 		layout = awful.layout.suit.max,
 		icon = beautiful.icon.thunderbird,
+	},{ name = 'skype',
+		layout = awful.layout.suit.tile.left,
+		icon = beautiful.icon.skype,
 	},
 },{
 	{	name = 'code',
@@ -103,9 +106,12 @@ local screens = {{
 	},{ name = 'debug',
 		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.bug,
-	},{ name = 'skype',
+	},{ name = 'intellij',
 		layout = awful.layout.suit.tile.left,
-		icon = beautiful.icon.skype,
+		icon = beautiful.icon.intellij,
+	},{ name = 'python',
+		layout = awful.layout.suit.tile.left,
+		icon = beautiful.icon.python,
 	},
 }}
 
@@ -541,7 +547,7 @@ awful.rules.rules = {
 	},
 	{ rule = { class = "Thunderbird" }, properties = { screen = 1, tag = "mail" } },
 	-- -- DISPLAY 2
-	{ rule = { class = "Skype" }, properties = { screen = 2, tag = "skype" } },
+	{ rule = { class = "Skype" }, properties = { screen = 1, tag = "skype" } },
 }
 -- }}}
 

@@ -28,7 +28,7 @@ export PS1
 edit-ds-conf() {
 	filename="/etc/nginx/sites-available/webdispatch.conf"
 	md5f1=$(md5sum "$filename" | cut -d' ' -f1)
-	sudo gedit "$filename"
+	sudo $EDITOR "$filename"
 
 	md5f2=$(md5sum "$filename" | cut -d' ' -f1)
 

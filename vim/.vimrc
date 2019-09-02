@@ -70,9 +70,9 @@ syntax on
 set autoread
 set number					" show lines numbers
 set ruler					" show line number at the bottom bar
-set tabstop=4				" tabs size
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2				" tabs size
+set shiftwidth=2
+set softtabstop=2
 set cursorline				" highlight line under cursor
 set noswapfile
 set nobackup
@@ -105,6 +105,9 @@ set mouse=a					" can use mouse like other editors
 set t_Co=256
 set background=dark
 silent! colorscheme monokai
+hi Normal     ctermbg=NONE
+hi CursorLine ctermbg=NONE
+hi Visual     term=reverse cterm=reverse
 
 " set formatoptions-=cro	" don't auto insert comment on new line (not work)
 
@@ -128,6 +131,9 @@ command! W write
 " Mappings
 " ==============================================================================
 let g:mapleader = ','
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+cmap w!! w !sudo tee > /dev/null %
 
 " Hide search highlight
 nmap <leader>nh :set nohlsearch<CR>
@@ -159,8 +165,10 @@ nnoremap <C-o> o<esc>
 nnoremap <C-O> O<esc>
 
 " Navigate betwen display lines
-noremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
-noremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
+" noremap <silent><expr> k v:count == 0 ? 'gk' : 'k'
+" noremap <silent><expr> j v:count == 0 ? 'gj' : 'j'
+noremap k gk
+noremap j gj
 
 " Buffers navigation maps
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -175,6 +183,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>= <Plug>AirlineSelectNextTab
 nmap <leader>x :bd<CR>
+
+noremap <leader>ss :syntax sync fromstart<CR>
 
 " Edit .vimrc
 if has('nvim')
@@ -196,8 +206,8 @@ if has('clipboard')
 	" noremap <Leader>p "+p
 
 	" Primary clipboard (Paste on MouseWheel) [unnamed]
-	noremap <Leader>y "*y
-	noremap <Leader>p "*p
+	noremap <Leader>y "+y
+	noremap <Leader>p "+p
 endif
 
 " Save buffers undo/redo history

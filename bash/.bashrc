@@ -1,6 +1,10 @@
 bash_dir="$HOME/.config/bash"
 EDITOR="vim"
 
+if hash nvim 2>/dev/null; then
+	EDITOR="nvim"
+fi
+
 # If not running interactively, don't do anything
 case $- in
 	*i*) ;;
