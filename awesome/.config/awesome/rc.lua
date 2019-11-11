@@ -90,7 +90,7 @@ local screens = {{
 		layout = awful.layout.suit.tile,
 		icon = beautiful.icon.google_chrome,
 	},{ name = 'mail',
-		layout = awful.layout.suit.max,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.thunderbird,
 	},{ name = 'skype',
 		layout = awful.layout.suit.tile.left,
@@ -98,19 +98,19 @@ local screens = {{
 	},
 },{
 	{	name = 'code',
-		layout = awful.layout.suit.tile.left,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.code,
 	},{ name = 'term',
-		layout = awful.layout.suit.tile.left,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.terminal,
 	},{ name = 'debug',
-		layout = awful.layout.suit.tile.left,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.bug,
 	},{ name = 'intellij',
-		layout = awful.layout.suit.tile.left,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.intellij,
 	},{ name = 'python',
-		layout = awful.layout.suit.tile.left,
+		layout = awful.layout.suit.tile.fair,
 		icon = beautiful.icon.python,
 	},
 }}
@@ -526,7 +526,8 @@ awful.rules.rules = {
           "AlarmWindow",  -- Thunderbird's calendar.
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
-      }, properties = { floating = true, titlebars_enabled = true }},
+      }, properties = { floating = false, titlebars_enabled = true }
+		},
 
 	{ -- Open devtools in tags for it
 		rule_any = {
@@ -546,8 +547,9 @@ awful.rules.rules = {
 		}, properties = { screen = 1, tag = "web" }
 	},
 	{ rule = { class = "Thunderbird" }, properties = { screen = 1, tag = "mail" } },
-	-- -- DISPLAY 2
 	{ rule = { class = "Skype" }, properties = { screen = 1, tag = "skype" } },
+	-- DISPLAY 2
+	{ rule = { class = "Code" }, properties = { screen = 2, tag = "code" } },
 }
 -- }}}
 

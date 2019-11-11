@@ -23,7 +23,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
 " Plug 'terryma/vim-multiple-cursors'
@@ -68,40 +68,40 @@ call plug#end()
 filetype plugin indent on
 syntax on
 set autoread
-set number					" show lines numbers
-set ruler					" show line number at the bottom bar
-set tabstop=2				" tabs size
+set number										" show lines numbers
+set ruler											" show line number at the bottom bar
+set tabstop=2									" tabs size
 set shiftwidth=2
 set softtabstop=2
-set cursorline				" highlight line under cursor
+set cursorline								" highlight line under cursor
 set noswapfile
 set nobackup
 set encoding=utf-8
 set textwidth=100
 set colorcolumn=+1
-set formatoptions-=t		" Don't auto-break long lines (re-enable this for prose)
+set formatoptions-=t					" Don't auto-break long lines (re-enable this for prose)
 
-set listchars=tab:»\ 		" hidden chars
+set listchars=tab:»\ 					" hidden chars
 au BufWinEnter * hi SpecialKey ctermfg=darkgray guifg=darkgray
 
-set ignorecase				" search with ignore case
+set ignorecase								" search with ignore case
 set smartcase
-set hlsearch				" highlight search result
-set incsearch				" do search when typing
-set autoindent				" same indent on next line
+set hlsearch									" highlight search result
+set incsearch									" do search when typing
+set autoindent								" same indent on next line
 set smartindent
 set showmatch
-set hidden					" hidden unsaved buffer"
+set hidden										" hidden unsaved buffer"
 set scrolloff=8
-set showcmd					" Show incomplete command in status bar
+set showcmd										" Show incomplete command in status bar
 " set novisualbell
 " set noerrorbells
-set wildmenu				" vim commands autocompletion
+set wildmenu									" vim commands autocompletion
 set wildmode=list:longest,full
 
 set backspace=indent,eol,start
 
-set mouse=a					" can use mouse like other editors
+set mouse=a										" can use mouse like other editors
 set t_Co=256
 set background=dark
 silent! colorscheme monokai
