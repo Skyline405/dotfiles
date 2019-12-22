@@ -19,41 +19,56 @@ endif
 " ==============================================================================
 call plug#begin('~/.vim/plugged')
 
+" ==============================================================================
 " Main plugins
-Plug 'jiangmiao/auto-pairs'
+" ==============================================================================
+" Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
-Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
+" Plug 'valloric/youcompleteme', { 'do': './install.py --all' }
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'lilydjwg/colorizer'
+Plug 'lilydjwg/colorizer' " show color for colorcode in vim
 
+" ==============================================================================
 " Formatters and linters
+" ==============================================================================
 Plug 'godlygeek/tabular'
 " Plug 'scrooloose/syntastic'
 
+" ==============================================================================
 " Interface
+" ==============================================================================
 Plug 'bling/vim-airline' ", { 'do': 'apt-get install fonts-powerline -y' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 
+" ==============================================================================
 " Themes
+" ==============================================================================
 " Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 Plug 'crusoexia/vim-monokai'
 
+" ==============================================================================
 " Languages support
+" ==============================================================================
 " Support all popular languages (syntax, ident and smth. else)
-Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
+Plug 'sheerun/vim-polyglot' " suport syntax highlight for most of laguages
+Plug 'mattn/emmet-vim' " emmet for vim (not work)
 
+" ==============================================================================
 " GIT
+" ==============================================================================
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive' " git commands for vim
 
+" ==============================================================================
+" Other
+" ==============================================================================
 " Iteractive scratchpad
 Plug 'metakirby5/codi.vim'
 
@@ -65,14 +80,19 @@ call plug#end()
 " ==============================================================================
 " Native VIM settings
 " ==============================================================================
-filetype plugin indent on
-syntax on
-set autoread
+filetype plugin indent on			" turns on ft detection, plugins and indent
+syntax on											" turn on syntax highlight
+let g:asmsyntax = 'nasm'
+set autoread									" auto re-read the file when its changed
 set number										" show lines numbers
 set ruler											" show line number at the bottom bar
+" Ref - https://habr.com/ru/post/64224
 set tabstop=2									" tabs size
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=2							" count of spaces for shift by >>
+set softtabstop=2							" count of spaces wich tabs printed
+set smarttab
+set autoindent								" same indent on next line
+set smartindent
 set cursorline								" highlight line under cursor
 set noswapfile
 set nobackup
@@ -81,17 +101,16 @@ set textwidth=100
 set colorcolumn=+1
 set formatoptions-=t					" Don't auto-break long lines (re-enable this for prose)
 
-set listchars=tab:»\ 					" hidden chars
+set listchars=tab:»\ 					" hidden chars. turn on/off: set (no)list
+" set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 au BufWinEnter * hi SpecialKey ctermfg=darkgray guifg=darkgray
 
 set ignorecase								" search with ignore case
 set smartcase
 set hlsearch									" highlight search result
 set incsearch									" do search when typing
-set autoindent								" same indent on next line
-set smartindent
 set showmatch
-set hidden										" hidden unsaved buffer"
+set hidden										" hidden unsaved buffer
 set scrolloff=8
 set showcmd										" Show incomplete command in status bar
 " set novisualbell
@@ -102,14 +121,14 @@ set wildmode=list:longest,full
 set backspace=indent,eol,start
 
 set mouse=a										" can use mouse like other editors
-set t_Co=256
+set t_Co=256									" use 256 colors
 set background=dark
 silent! colorscheme monokai
 hi Normal     ctermbg=NONE
 hi CursorLine ctermbg=NONE
 hi Visual     term=reverse cterm=reverse
 
-" set formatoptions-=cro	" don't auto insert comment on new line (not work)
+set formatoptions-=cro	" don't auto insert comment on new line
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
@@ -123,6 +142,14 @@ if &term =~ '256color'
 endif
 
 " ==============================================================================
+" Autocommands
+" ==============================================================================
+" restore last cursor position
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" ==============================================================================
 " Commands
 " ==============================================================================
 command! W write
@@ -130,7 +157,7 @@ command! W write
 " ==============================================================================
 " Mappings
 " ==============================================================================
-let g:mapleader = ','
+let g:mapleader = ' '
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
