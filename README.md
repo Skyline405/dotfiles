@@ -47,3 +47,5 @@ https://habr.com/ru/post/222285/
 https://unix.stackexchange.com/questions/90089/remapping-both-caps-lock-and-shiftcaps-lock-in-xkb
 
 http://www.linuxlib.ru/Linux/xkb/gram-action.html
+
+https://devhints.io/vimscript
