@@ -82,7 +82,7 @@ call plug#end()
 " ==============================================================================
 filetype plugin indent on			" turns on ft detection, plugins and indent
 syntax on											" turn on syntax highlight
-let g:asmsyntax = 'nasm'
+let g:asmsyntax = 'nasm'			" all assembly files has this type
 set autoread									" auto re-read the file when its changed
 set number										" show lines numbers
 set ruler											" show line number at the bottom bar
@@ -96,6 +96,7 @@ set smartindent
 set cursorline								" highlight line under cursor
 set noswapfile
 set nobackup
+set nowrap
 set encoding=utf-8
 set textwidth=100
 set colorcolumn=+1
@@ -351,3 +352,10 @@ nmap <Leader>e <Plug>(easymotion-overwin-e)
 
 map  <Leader>b <Plug>(easymotion-bd-b)
 nmap <Leader>b <Plug>(easymotion-overwin-b)
+
+" ==============================================================================
+" Auto commands
+" ==============================================================================
+" au BufRead,BufNewFile *.asm set filetype=nasm " only this ext has this type
+au BufRead,BufNewFile *.rs set filetype=rust
+
