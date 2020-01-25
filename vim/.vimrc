@@ -1,6 +1,11 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+if len(system('whereis git')) <= 0
+	echo "Installing GIT..."
+	silent !apt install git -y " TODO: adapt for any other systems
+endif
+
 " Download vim-plug if not already installed
 if has('unix')
   if empty(glob('~/.vim/autoload/plug.vim'))
@@ -213,6 +218,7 @@ nmap <leader>= <Plug>AirlineSelectNextTab
 nmap <leader>x :bd<CR>
 
 noremap <leader>ss :syntax sync fromstart<CR>
+imap jj <ESC>
 
 " Edit .vimrc
 if has('nvim')
@@ -250,7 +256,7 @@ endif
 " ==============================================================================
 " NERDTree
 " ==============================================================================
-map <C-n> :NERDTreeToggle<CR>
+map <BS> :NERDTreeToggle<CR>
 let g:NERDTreeQuitOnOpen = 1
 
 " ==============================================================================
