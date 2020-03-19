@@ -317,8 +317,15 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+    awful.key({ modkey, "Shift"   }, "q", function ()
+				local confirm = "echo -e 'No\nYes' | dmenu -p Quit?"
+				awful.spawn.easy_async_with_shell(confirm, function (stdout)
+					if stdout == "Yes" then
+						awesome.quit()
+					end
+				end)
+
+			end, {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
