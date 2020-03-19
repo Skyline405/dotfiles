@@ -21,6 +21,7 @@ alias gsu="git submodule update"
 alias gs='git status '
 alias gf='git fetch '
 alias gfc='git fetch && git checkout '
+alias gl='git log --pretty=oneline'
 
 alias got='git '
 alias get='git '
