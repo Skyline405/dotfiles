@@ -12,7 +12,8 @@ URxvt*imLocale: en_US.UTF-8
 URxvt*termName: rxvt-unicode-256color
 ! Urxvt*buffered: false
 ! URxvt.intensityStyles: false
-URxvt.font:	xft:UbuntuMono Nerd Font:size=11, \
+URxvt.font:	xft:Monospace Regular:size=11, \
+			xft:UbuntuMono Nerd Font:size=11, \
 			xft:Inconsolata Nerd Font Mono:size=11, \
 			xft:DejaVuSansMono Nerd Font:size=11, \
 			xft:DroidSansMono Nerd Font:size=11, \

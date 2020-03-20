@@ -57,15 +57,15 @@ end
 
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.init(awful.util.getdir("config") .. "/themes/fall/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/greeny/theme.lua")
 
 ----------------------------------------------------------------------------------------------------
 --- Define settings vars ---
 ----------------------------------------------------------------------------------------------------
-local terminal   = "urxvt"
+local terminal   = "gnome-terminal"
 local editor     = os.getenv("EDITOR") or "vim"
 local editor_cmd = terminal .. " -e " .. editor
-local browser    = 'chromium' -- or 'google-chrome'
+local browser    = 'google-chrome' -- or 'google-chrome'
 local screenlock = 'i3lock -t'
 
 ----------------------------------------------------------------------------------------------------
