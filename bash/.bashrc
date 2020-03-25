@@ -1,6 +1,6 @@
-bash_dir="$HOME/.config/bash"
-export EDITOR="vim"
+export BASH_DIR="$HOME/.config/bash"
 
+export EDITOR="vim"
 if hash nvim 2>/dev/null; then
 	EDITOR="nvim"
 fi
@@ -64,15 +64,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# App yarn global to path
 export PATH="$(yarn global bin):$PATH"
 
-# Functions
-if [ -f ~/.config/bash/functions.sh ]; then
-	source ~/.config/bash/functions.sh
-fi
-
-# Aliases
-if [ -f ~/.config/bash/aliases.sh ]; then
-	source ~/.config/bash/aliases.sh
-fi
+[ -s "$BASH_DIR/functions.sh" ] && \. "$BASH_DIR/functions.sh"
+[ -s "$BASH_DIR/aliases.sh" ] && \. "$BASH_DIR/aliases.sh"
 
