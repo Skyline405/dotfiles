@@ -25,7 +25,7 @@ $ make unstow
 | recipe         | desc                                                     |
 | ---            | ---                                                      |
 | :g//t$         | copy lines contains highlighted value at the end of file |
-| :g//d          | delete lines contains highkighted value                  |
+| :g//d          | delete lines contains highlighted value                  |
 | :g!//d         | delete lines NOT contains highlighted value              |
 | :v/./,/./-j    | replace each entry many empty lines by one empty line    |
 | :'<,'>s/$/\r/g | add empty line between all lines                         |
