@@ -236,12 +236,12 @@ if has('clipboard')
 	set clipboard=unnamedplus
 
 	" Clipboard (system use: <C-c>/<C-v>) [unnamedplus]
-	" noremap <Leader>y "+y
-	" noremap <Leader>p "+p
-
-	" Primary clipboard (Paste on MouseWheel) [unnamed]
 	noremap <Leader>y "+y
 	noremap <Leader>p "+p
+
+	" Primary clipboard (Paste on MouseWheel) [unnamed]
+	noremap <Leader>Y "*y
+	noremap <Leader>P "*p
 endif
 
 " Save buffers undo/redo history
