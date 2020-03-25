@@ -14,9 +14,6 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
--- Load Debian menu entries
--- local debian = require("debian.menu")
-
 -- External libs
 local lain = require("lain")
 
@@ -95,6 +92,9 @@ local screens = {{
 	},{ name = 'skype',
 		layout = awful.layout.suit.tile.left,
 		icon = beautiful.icon.skype,
+	},{ name = 'firefox',
+		layout = awful.layout.suit.tile,
+		icon = beautiful.icon.firefox,
 	},
 },{
 	{	name = 'code',
@@ -149,26 +149,29 @@ local function client_menu_toggle_fn()
             instance:hide()
             instance = nil
         else
-            instance = awful.menu.clients({ theme = { width = 250 } })
+            instance = awful.menu.clients({ theme = { width = 300 } })
         end
     end
 end
 -- }}}
 
 -- {{{ Menu
+-- Load Debian menu entries
+local debian = require("debian.menu")
+
 -- Create a launcher widget and a main menu
 myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end, beautiful.icon.keyboard },
-   { "manual", terminal .. " -e man awesome", beautiful.icon.bookmark },
-   { "edit config", editor_cmd .. " " .. awesome.conffile, beautiful.icon.edit_props },
-   { "restart", awesome.restart, beautiful.icon.reboot },
-   { "quit", function() awesome.quit() end, beautiful.icon.poweroff }
+   { "Hotkeys", function() return false, hotkeys_popup.show_help end, beautiful.icon.keyboard },
+   { "Manual", terminal .. " -e man awesome", beautiful.icon.bookmark },
+   { "Edit config", editor_cmd .. " " .. awesome.conffile, beautiful.icon.edit_props },
+   { "Restart", awesome.restart, beautiful.icon.reboot },
+   { "Quit", function() awesome.quit() end, beautiful.icon.poweroff }
 }
 
 mymainmenu = awful.menu({ items = {
-		{ "awesome", myawesomemenu, beautiful.awesome_icon },
-		-- { "Debian", debian.menu.Debian_menu.Debian },
-		{ "open terminal", terminal, beautiful.icon.terminal }
+		{ "Open terminal", terminal, beautiful.icon.terminal },
+		{ "Debian", debian.menu.Debian_menu.Debian, beautiful.icon.menu },
+		{ "Awesome", myawesomemenu, beautiful.awesome_icon },
 	}
 })
 
@@ -355,10 +358,10 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function ()
-		local result = os.execute('rofi -show run')
-		if result ~= true then awful.screen.focused().mypromptbox:run() end
-	end, {description = "run prompt", group = "launcher"}),
+    awful.key({ modkey }, "r", function ()
+			local result = os.execute('rofi -show run')
+			if result ~= true then awful.screen.focused().mypromptbox:run() end
+		end, {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x", function ()
                   awful.prompt.run {
@@ -433,15 +436,15 @@ clientkeys = gears.table.join(
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
-        awful.key({ modkey }, "#" .. i + 9, function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
-                  end
-                  -- {description = "view tag #"..i, group = "tag"}
-		),
+			awful.key({ modkey }, "#" .. i + 9, function ()
+					local screen = awful.screen.focused()
+					local tag = screen.tags[i]
+					if tag then
+						 tag:view_only()
+					end
+				end
+				-- {description = "view tag #"..i, group = "tag"}
+			),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9, function ()
                       local screen = awful.screen.focused()
@@ -450,7 +453,7 @@ for i = 1, 9 do
                          awful.tag.viewtoggle(tag)
                       end
                   end
-                  -- {description = "toggle tag #" .. i, group = "tag"}
+									, {description = "toggle tag #" .. i, group = "tag"}
 		),
         -- Move client to tag.
         awful.key({ modkey, "Shift" }, "#" .. i + 9, function ()
@@ -461,7 +464,7 @@ for i = 1, 9 do
                           end
                      end
                   end
-                  -- {description = "move focused client to tag #"..i, group = "tag"}
+									-- , {description = "move focused client to tag #"..i, group = "tag"}
 		),
         -- Toggle tag on focused client.
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function ()
@@ -505,9 +508,10 @@ awful.rules.rules = {
     },
 
     -- Add titlebars to normal clients and dialogs
-	{ rule_any = {type = { "normal", "dialog" }
-		}, properties = { titlebars_enabled = beautiful.titlebar_enabled }
-	},
+		-- Use "xprop" command to detect client class or role
+		{ rule_any = {type = { "normal", "dialog" }},
+			properties = { titlebars_enabled = beautiful.titlebar_enabled }
+		},
 
     -- Floating clients.
     { rule_any = {
@@ -549,12 +553,13 @@ awful.rules.rules = {
 	-- DISPLAY 1
 	{ --Browsers
 		rule_any = {
-			-- class = { "Google-chrome", 'Firefox', 'Chromium' },
-			role = { "browser" }
+			class = { "google-chrome", "Chromium" },
+			-- role = { "browser" }
 		}, properties = { screen = 1, tag = "web" }
 	},
 	{ rule = { class = "Thunderbird" }, properties = { screen = 1, tag = "mail" } },
 	{ rule = { class = "Skype" }, properties = { screen = 1, tag = "skype" } },
+	{ rule = { class = "Firefox" }, properties = { screen = 1, tag = "firefox" } },
 	-- DISPLAY 2
 	{ rule = { class = "Code" }, properties = { screen = 2, tag = "code" } },
 }

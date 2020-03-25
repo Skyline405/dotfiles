@@ -30,7 +30,7 @@ theme.font          = theme.font_family .. ' ' .. theme.font_size
 
 theme.bg_normal     = '#222222'
 theme.bg_focus      = '#3db19e'
-theme.bg_urgent     = '#f44336'
+theme.bg_urgent     = '#ff0000'
 theme.bg_minimize   = '#444444'
 theme.bg_systray    = theme.bg_normal
 
@@ -96,7 +96,7 @@ theme.menu_border_width = dpi(4)
 --theme.bg_widget = '#cc0000'
 
 theme.awesome_icon  = themes_path .. 'icons/mint.png'
-theme.wallpaper     = themes_path .. 'wallpapers/material.jpg'
+theme.wallpaper     = themes_path .. 'wallpapers/material.png'
 
 --- Tasklist ---
 -- theme.tasklist_plain_task_name = true
@@ -128,6 +128,7 @@ theme.icon.terminal         = theme.dir .. 'icons/white/terminal.png'
 theme.icon.bug              = theme.dir .. 'icons/white/bug.png'
 theme.icon.skype            = theme.dir .. 'icons/white/skype.png'
 theme.icon.google_chrome    = theme.dir .. 'icons/white/google_chrome.png'
+theme.icon.firefox          = theme.dir .. 'icons/white/firefox.png'
 theme.icon.thunderbird      = theme.dir .. 'icons/white/thunderbird.png'
 theme.icon.ram              = theme.dir .. 'icons/white/ram.png'
 theme.icon.cpu              = theme.dir .. 'icons/white/cpu.png'
