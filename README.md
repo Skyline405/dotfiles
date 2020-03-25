@@ -12,10 +12,20 @@ Install dependencies
 Clone the repository:
 ```bash
 $ git clone https://github.com/Skyline405/dotfiles.git && cd dotfiles
-$ make stow
+$ make stow # it'll install all
 ```
 
-To uninstall use:
+To install specific directory use:
+```bash
+$ stow -t ~ <dirname>
+```
+
+To uninstall specific directory use:
+```bash
+$ stow -t -D ~ <dirname>
+```
+
+To uninstall all use:
 ```bash
 $ make unstow
 ```
