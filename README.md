@@ -45,11 +45,27 @@ $ make unstow
 
 # Linux keyboard Remap
 
-#### Reload keymap configuration:
+#### Reload keymap configuration (wrong way):
 
 ```bash
 setxkbmap -layout us,ru -symbols "pc+us+ru:2+inet(evdev)+group(alt_shift_toggle)+terminate(ctrl_alt_bksp)+caps" -print | xkbcomp -I"$HOME/.config/xkb" - "${DISPLAY%%.*}"
 ```
+
+#### Debian keyboard setup /etc/default/keyboard
+
+```conf
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="us,ru"
+XKBVARIANT=""
+XKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll,caps:escape"
+
+BACKSPACE="guess"
+```
+
 #### Help links:
 
 https://habr.com/ru/post/222285/
