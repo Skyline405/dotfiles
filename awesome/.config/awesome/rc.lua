@@ -238,8 +238,8 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-    -- Wallpaper
-    set_wallpaper(s)
+	-- Wallpaper
+	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
 	local schema = screens[s.index]
@@ -257,7 +257,7 @@ awful.screen.connect_for_each_screen(function(s)
 		awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 	end
 
-    s.mypromptbox = awful.widget.prompt()
+  s.mypromptbox = awful.widget.prompt()
 	s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
 	s.mytasklist_buttons = tasklist_buttons
@@ -553,9 +553,10 @@ awful.rules.rules = {
 	-- DISPLAY 1
 	{ --Browsers
 		rule_any = {
-			class = { "google-chrome", "Chromium" },
+			class = { "Google-chrome", "Chromium" },
 			-- role = { "browser" }
-		}, properties = { screen = 1, tag = "web" }
+		}, properties = { screen = 1, tag = "web" },
+		except_any = { role = { 'pop-up' } }
 	},
 	{ rule = { class = "Thunderbird" }, properties = { screen = 1, tag = "mail" } },
 	{ rule = { class = "Skype" }, properties = { screen = 1, tag = "skype" } },
