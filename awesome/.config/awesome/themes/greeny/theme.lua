@@ -18,6 +18,8 @@ local wibox = require('wibox')
 local awful = require('awful')
 local gears = require('gears')
 
+local cputemp = require('widgets.cputemp')
+
 --------------------------------------------------------------------------------
 --- Theme ---
 --------------------------------------------------------------------------------
@@ -247,21 +249,13 @@ local cpu_usage_widget = wibox.container.margin(
 
 -- Network status
 local eth_device = 'enp4s0'
-local wifi_device = 'wlp2s0'
+local wifi_device = 'wlan0' -- 'wlp2s0'
 local eth_icon   = wibox.widget.imagebox()
 local wifi_icon  = wibox.widget.imagebox()
 local net_status = lain.widget.net({
     eth_state = 'on',
     wifi_state = 'on',
     settings = function()
-        local eth = net_now.devices[eth_device]
-        if eth then
-            if eth.ethernet then
-                eth_icon:set_image(theme.icon.net_connected)
-            else
-                eth_icon:set_image(theme.icon.net_disconnected)
-            end
-        end
 
         local wlan0 = net_now.devices[wifi_device]
         if wlan0 then
@@ -278,6 +272,15 @@ local net_status = lain.widget.net({
                 end
             else
                 wifi_icon:set_image()
+            end
+        end
+
+        local eth = net_now.devices[eth_device]
+        if eth and not wlan0 then
+            if eth.ethernet then
+                eth_icon:set_image(theme.icon.net_connected)
+            else
+                eth_icon:set_image(theme.icon.net_disconnected)
             end
         end
     end
@@ -391,13 +394,18 @@ taskwar_widget:buttons(gears.table.join(
         -- widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
     -- end
 -- })
--- local cpu_temp_widget = wibox.container.margin(
-    -- wibox.widget {
-        -- layout = wibox.layout.align.horizontal,
-        -- wibox.widget.imagebox(theme.icon.cpu),
-        -- cpu_temp.widget,
-    -- }, dpi(2), dpi(3), dpi(2), dpi(2)
--- )
+local cpu_temp = cputemp({
+    settings = function()
+        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
+    end
+})
+local cpu_temp_widget = wibox.container.margin(
+    wibox.widget {
+        layout = wibox.layout.align.horizontal,
+        wibox.widget.imagebox(theme.icon.cpu),
+        cpu_temp.widget,
+    }, dpi(2), dpi(3), dpi(2), dpi(2)
+)
 
 -- Clock
 local mytextclock = wibox.widget.textclock(), theme.clock_bg
@@ -436,6 +444,7 @@ function theme.add_mywibox(s)
         { mykeyboardlayout,   '#474747',  },
 
         -- { taskwar_widget,     '#777E76',  },
+        { cpu_temp_widget,    '#914794',  },
         { cpu_usage_widget,   '#4B696D',  },
         { mem_usage_widget,   '#6EB49D',  },
         { volume_widget,      '#474747',  },
