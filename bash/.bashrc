@@ -2,13 +2,13 @@ export BASH_DIR="$HOME/.config/bash"
 
 export EDITOR="vim"
 if hash nvim 2>/dev/null; then
-	EDITOR="nvim"
+	export EDITOR="nvim"
 fi
 
 # If not running interactively, don't do anything
 case $- in
 	*i*) ;;
-	*) return;;
+		*) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -67,7 +67,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:/usr/local/bin"
 
 # App yarn global to path
-export PATH="$(yarn global bin):$PATH"
+if command -v yarn > /dev/null; then
+  export PATH="$PATH:$(yarn global bin)"
+fi
 
 [ -s "$BASH_DIR/functions.sh" ] && \. "$BASH_DIR/functions.sh"
 [ -s "$BASH_DIR/aliases.sh" ] && \. "$BASH_DIR/aliases.sh"
