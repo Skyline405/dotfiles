@@ -53,7 +53,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>= <Plug>AirlineSelectNextTab
-nmap <leader>x :bd<CR>
+nmap <leader>q :bd<CR>
 
 noremap <leader>ss :syntax sync fromstart<CR>
 imap jj <ESC>
@@ -96,11 +96,14 @@ inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 "
 " " Use alt + hjkl to resize windows
-nnoremap <M-j>    :resize -2<CR>
-nnoremap <M-k>    :resize +2<CR>
-nnoremap <M-h>    :vertical resize -2<CR>
-nnoremap <M-l>    :vertical resize +2<CR>
+nnoremap <M-j> :resize -2<CR>
+nnoremap <M-k> :resize +2<CR>
+nnoremap <M-h> :vertical resize -2<CR>
+nnoremap <M-l> :vertical resize +2<CR>
 
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
+" Ref: https://unix.stackexchange.com/questions/74571/vim-shortcut-to-open-a-file-under-cursor-in-an-already-opened-window
+nnoremap <silent> <Leader>gf :let mycurf=expand("<cfile>")<cr><c-w>p:execute("e ".mycurf)<cr>
+" nnoremap <silent> <Leader>of :let mycurf=expand("<cfile>")<cr><c-w>p:execute("e ".mycurf)<cr><c-w>p

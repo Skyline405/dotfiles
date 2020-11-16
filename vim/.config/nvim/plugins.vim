@@ -36,18 +36,17 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'lilydjwg/colorizer' " show color for colorcode in vim
 Plug 'godlygeek/tabular'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'scrooloose/syntastic'
-Plug 'mattn/emmet-vim' " emmet for vim (not work)
+" Plug 'mattn/emmet-vim' " emmet for vim (not work)
 
-" if !has('nvim')
 " ==============================================================================
 " Interface
 " ==============================================================================
 Plug 'bling/vim-airline' ", { 'do': 'apt-get install fonts-powerline -y' }
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-" endif
 
 " ==============================================================================
 " Languages support
@@ -79,3 +78,4 @@ Plug 'shime/vim-livedown'
 
 " ==============================================================================
 call plug#end()
+
