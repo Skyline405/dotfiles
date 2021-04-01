@@ -53,7 +53,7 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>= <Plug>AirlineSelectNextTab
-nmap <leader>q :bd<CR>
+nmap <leader>x :bd<CR>
 
 noremap <leader>ss :syntax sync fromstart<CR>
 imap jj <ESC>
