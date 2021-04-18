@@ -54,6 +54,7 @@ setprompt() {
 	# ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
 	# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
+	return_code="%(?..%{$fg[red]%}%? ↵ %{$reset_color%})"
 
 	PROMPT='${PR_SET_CHARSET}\
 ${PR_MAIN_FG}${PR_ULCORNER}${PR_HBAR}[\
@@ -79,3 +80,5 @@ setprompt
 # autoload -U add-zsh-hook
 # add-zsh-hook precmd  theme_precmd
 # add-zsh-hook preexec theme_preexec
+#
+# vi: ft=zsh
