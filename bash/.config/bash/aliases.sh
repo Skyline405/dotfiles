@@ -11,6 +11,23 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# color support
+if [ -f /usr/bin/grc ]; then
+ alias gcc="grc --colour=auto gcc"
+ alias irclog="grc --colour=auto irclog"
+ alias log="grc --colour=auto log"
+ alias netstat="grc --colour=auto netstat"
+ alias ping="grc --colour=auto ping"
+ alias proftpd="grc --colour=auto proftpd"
+ alias traceroute="grc --colour=auto traceroute"
+fi
+
+# vim and nvim
+if hash nvim 2>/dev/null; then
+	alias vi="vim"
+	alias vim="nvim"
+fi
+
 # some more ls aliases
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -26,10 +43,6 @@ alias gs='git status '
 alias gf='git fetch '
 alias gfc='git fetch && git checkout '
 alias gl='git log --pretty=oneline'
-
-alias got='git '
-alias get='git '
-alias gut='git '
 
 # uses 'thefuck' to fix common command mistakes
 # https://github.com/nvbn/thefuck

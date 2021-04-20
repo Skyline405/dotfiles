@@ -2,37 +2,41 @@
 # Functions
 ####################################################################################################
 
-if [ -x /usr/bin/tput ] && tput setaf 1 >& /dev/null; then
-	C_RED='\[\033[01;31m\]'
-	C_GREEN='\[\033[01;32m\]'
-	C_BLUE='\[\033[01;34m\]'
-	C_YELLOW='\[\033[01;33m\]'
-	C_WHITE='\[\033[00m\]'
-	C_PURPLE='\[\033[01;35m\]'
-fi
+arch-extract () {
+	if [ -f $1 ]; then
+		case $1 in
+			*.tar.bz2) tar xvjf $1   ;;
+			*.tar.gz)  tar xvzf $1   ;;
+			*.tar.xz)  tar xvfJ $1   ;;
+			*.bz2)     bunzip2 $1    ;;
+			*.rar)     unrar x $1    ;;
+			*.gz)      gunzip $1     ;;
+			*.tar)     tar xvf $1    ;;
+			*.tbz2)    tar xvjf $1   ;;
+			*.tgz)     tar xvzf $1   ;;
+			*.zip)     unzip $1      ;;
+			*.Z)       uncompress $1 ;;
+			*.7z)      7z x $1       ;;
+			*)         echo "'$1' cannot be extracted with >arch-extract<" ;;
+		esac
+	else
+		echo "'$1' is not an acceptable file"
+	fi
+}
 
-# git_branch() {
-	# git branch 2> /dev/null | sed -e '/^[^*]/d' | sed -e 's/\*\s\(.*\)$/\1/' | sed -e 's/(\(HEAD\)\s.*\s\(.*\))/\1 -> \2/' | sed -e 's/.*/ \0/'
-# }
-
-# git_check_index() {
-	# local c=$1
-	# if git log >& /dev/null; then
-		# local index=$(git status --short | grep -E '^M' | wc --lines)
-		# local noindex=$(git status --short | grep -E '^\sM' | wc --lines)
-		# local untracked=$(git status --short | grep -E '^\?\?' | wc --lines)
-		# echo "$c($C_GREEN${index}$c|$C_RED${noindex}$c|$C_RED${untracked}$c) "
-	# fi
-# }
-
-_GIT_PS1="\$(__git_ps1 ' %s') "
-
-# PS1='${debian_chroot:+($debian_chroot)}'
-PS1="${C_GREEN}\u"
-PS1+="@\h "
-PS1+="${C_BLUE}\w"
-PS1+="${C_PURPLE}${_GIT_PS1}"
-PS1+="${C_WHITE}\$ "
-
-export PS1
-
+arch-pack () {
+	if [ $1 ]; then
+		case $1 in
+			tbz) tar cjvf $2.tar.bz2 $2   ;;
+			tgz) tar czvf $2.tar.gz  $2   ;;
+			tar) tar cpvf $2.tar  $2      ;;
+			bz2) bzip $2                  ;;
+			gz)  gzip -c -9 -n $2 > $2.gz ;;
+			zip) zip -r $2.zip $2         ;;
+			7z)  7z a $2.7z $2            ;;
+			*)   echo "'$1' cannot be packed with >arch-pack<" ;;
+		esac
+	else
+		echo "'$1' is not an acceptable file"
+	fi
+}

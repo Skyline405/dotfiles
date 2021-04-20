@@ -105,8 +105,12 @@ bindkey -v
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/$USER/.zshrc'
 
+# auto rehash completions
+zstyle ':completion:*' rehash true
+
 autoload -Uz compinit
 compinit
+
 
 # Prolog
 export BASH_DIR="$HOME/.config/bash"
