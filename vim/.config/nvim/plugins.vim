@@ -46,7 +46,7 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " ==============================================================================
 Plug 'bling/vim-airline' ", { 'do': 'apt-get install fonts-powerline -y' }
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 " ==============================================================================
 " Languages support
@@ -57,8 +57,8 @@ Plug 'sheerun/vim-polyglot' " suport syntax highlight for most of laguages
 " ==============================================================================
 " Themes
 " ==============================================================================
-" Plug 'morhetz/gruvbox'
-" Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'crusoexia/vim-monokai'
 
 " ==============================================================================

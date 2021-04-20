@@ -50,7 +50,7 @@ set backspace=indent,eol,start
 set mouse=a										" can use mouse like other editors
 set t_Co=256									" use 256 colors
 set background=dark
-silent! colorscheme monokai
+silent! colorscheme gruvbox
 hi Normal     ctermbg=NONE
 hi CursorLine ctermbg=NONE
 hi Visual     term=reverse cterm=reverse
