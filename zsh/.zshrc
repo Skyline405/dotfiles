@@ -70,7 +70,7 @@ ZSH_THEME="retrowave"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,11 +115,7 @@ zstyle ':autocomplete:tab:*' widget-style menu-select
 autoload -Uz compinit
 compinit
 
-##################################################
-# Fish like syntax highlighting
-# Requires "zsh-syntax-highlighting" from apt
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+# History
 HISTSIZE=10000
 SAVEHIST=10000
 
