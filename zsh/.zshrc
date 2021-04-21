@@ -108,9 +108,20 @@ zstyle :compinstall filename '/home/$USER/.zshrc'
 # auto rehash completions
 zstyle ':completion:*' rehash true
 
+# Select all suggestion instead of top on result only
+zstyle ':autocomplete:tab:*' insert-unambiguous yes
+zstyle ':autocomplete:tab:*' widget-style menu-select
+
 autoload -Uz compinit
 compinit
 
+##################################################
+# Fish like syntax highlighting
+# Requires "zsh-syntax-highlighting" from apt
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Prolog
 export BASH_DIR="$HOME/.config/bash"

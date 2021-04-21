@@ -39,6 +39,7 @@ alias _i='sudo -i'
 
 # Git
 alias gsu="git submodule update"
+alias gco="git checkout"
 alias gs='git status '
 alias gf='git fetch '
 alias gfc='git fetch && git checkout '
