@@ -1,0 +1,38 @@
+{
+	"workbench.iconTheme": "material-icon-theme",
+	"editor.tabSize": 2,
+	// "editor.smoothScrolling": true,
+	"vim.easymotion": true,
+	"vim.surround": true,
+	"vim.hlsearch": true,
+	"vim.leader": " ",
+	"vim.easymotionDimBackground": false,
+
+	"explorer.incrementalNaming": "smart",
+	"editor.codeActionsOnSave": {},
+	"[vue]": {
+		"editor.defaultFormatter": "octref.vetur"
+	},
+	"prettier.enable": true,
+	"prettier.endOfLine": "lf",
+	"prettier.singleQuote": true,
+	"prettier.semi": false,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 2,
+	"prettier.trailingComma": "all",
+	"prettier.arrowParens": "always",
+	"[typescript]": {
+		// "editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+	},
+	"prettier.configPath": "/home/raul/.prettierrc",
+	"vetur.format.defaultFormatter.html": "js-beautify-html",
+	"vetur.format.defaultFormatter.js": "none",
+	"vetur.format.options.useTabs": true,
+	"eslint.packageManager": "yarn",
+	"editor.renderWhitespace": "all",
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+
+}
