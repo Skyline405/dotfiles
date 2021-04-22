@@ -121,11 +121,15 @@ SAVEHIST=10000
 
 # Prolog
 export BASH_DIR="$HOME/.config/bash"
-[ -s "$BASH_DIR/prolog.sh" ] && \. "$BASH_DIR/prolog.sh"
+[ -s "$BASH_DIR/prolog.sh" ] && source "$BASH_DIR/prolog.sh"
+
+# Include local machine settings
+[ -s "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 ## Settings
+
 
 ## End settings
 
 # Epilog
-[ -s "$BASH_DIR/epilog.sh" ] && \. "$BASH_DIR/epilog.sh"
+[ -s "$BASH_DIR/epilog.sh" ] && source "$BASH_DIR/epilog.sh"
