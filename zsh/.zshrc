@@ -54,6 +54,11 @@ ZSH_THEME="retrowave"
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Disable recheck git status after each command
+# can improve speed in fit repos
+zsh -c 'git config --global --add oh-my-zsh.hide-status 1'
+zsh -c 'git config --global --add oh-my-zsh.hide-dirty 1'
+
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # You can set one of the optional three formats:
@@ -106,7 +111,7 @@ bindkey -v
 zstyle :compinstall filename '/home/$USER/.zshrc'
 
 # auto rehash completions
-zstyle ':completion:*' rehash true
+# zstyle ':completion:*' rehash true
 
 # Select all suggestion instead of top on result only
 zstyle ':autocomplete:tab:*' insert-unambiguous yes
