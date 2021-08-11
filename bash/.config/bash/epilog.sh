@@ -7,7 +7,7 @@ elif $YARN_NOT_FOUND_SHOW; then
 fi
 
 # TODO check for bin path already included
-export $PATH="$PATH:/home/$USER/.local/bin"
+export PATH="$PATH:/home/$USER/.local/bin"
 
 [ -s "$BASH_DIR/functions.sh" ] && \. "$BASH_DIR/functions.sh"
 [ -s "$BASH_DIR/aliases.sh" ] && \. "$BASH_DIR/aliases.sh"
