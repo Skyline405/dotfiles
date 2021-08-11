@@ -1,7 +1,13 @@
 # App yarn global to path
 if command -v yarn > /dev/null; then
   export PATH="$PATH:$(yarn global bin)"
+elif $YARN_NOT_FOUND_SHOW; then
+  echo "yarn not found"
+  set YARN_NOT_FOUND_SHOW = false
 fi
+
+# TODO check for bin path already included
+export $PATH="$PATH:/home/$USER/.local/bin"
 
 [ -s "$BASH_DIR/functions.sh" ] && \. "$BASH_DIR/functions.sh"
 [ -s "$BASH_DIR/aliases.sh" ] && \. "$BASH_DIR/aliases.sh"
