@@ -53,6 +53,7 @@ Plug 'vim-airline/vim-airline-themes'
 " ==============================================================================
 " Support all popular languages (syntax, ident and smth. else)
 Plug 'sheerun/vim-polyglot' " suport syntax highlight for most of laguages
+Plug 'tpope/vim-fireplace'  " clojure support
 
 " ==============================================================================
 " Themes
