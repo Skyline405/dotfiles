@@ -3,5 +3,28 @@
   {
     "key": "shift shift",
     "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "shift shift",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "escape",
+    "command": "-calva.clearInlineResults"
+  },
+  {
+    "key": "shift+escape",
+    "command": "calva.clearInlineResults",
+    "when": "editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && !hasOtherSuggestions && !suggestWidgetVisible && editorLangId == 'clojure'"
+  },
+  {
+    "key": "ctrl+alt+p",
+    "command": "paredit.wrapAroundParens",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
+  },
+  {
+    "key": "ctrl+shift+alt+p",
+    "command": "-paredit.wrapAroundParens",
+    "when": "calva:keybindingsEnabled && editorTextFocus && editorLangId == 'clojure' && editorLangId == 'clojure' && paredit:keyMap =~ /original|strict/"
   }
 ]

@@ -1,6 +1,8 @@
 {
 	"workbench.iconTheme": "material-icon-theme",
+	"workbench.tree.indent": 16,
 	"editor.tabSize": 2,
+	"editor.bracketPairColorization.enabled": true,
 	// "editor.smoothScrolling": true,
 	"vim.easymotion": true,
 	"vim.surround": true,
@@ -13,19 +15,21 @@
 	"[vue]": {
 		"editor.defaultFormatter": "octref.vetur"
 	},
-	"prettier.enable": true,
-	"prettier.endOfLine": "lf",
-	"prettier.singleQuote": true,
-	"prettier.semi": false,
-	"prettier.useTabs": true,
-	"prettier.tabWidth": 2,
-	"prettier.trailingComma": "all",
-	"prettier.arrowParens": "always",
+	// "prettier.enable": true,
+	// "prettier.endOfLine": "lf",
+	// "prettier.singleQuote": true,
+	// "prettier.semi": false,
+	// "prettier.useTabs": true,
+	// "prettier.tabWidth": 2,
+	// "prettier.trailingComma": "all",
+	// "prettier.arrowParens": "always",
 	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+		// "editor.defaultFormatter": "vscode.typescript-language-features"
 		// "editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		// "editor.defaultFormatter": "esbenp.prettier-vscode",
 	},
-	"prettier.configPath": "/home/raul/.prettierrc",
+	// "prettier.configPath": "/home/raul/.prettierrc",
 	"vetur.format.defaultFormatter.html": "js-beautify-html",
 	"vetur.format.defaultFormatter.js": "none",
 	"vetur.format.options.useTabs": true,
@@ -34,7 +38,37 @@
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+	"files.exclude": {
+		// "build": true,
+		// "dist": true
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+		// "editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
-	}
+	},
+	"[dart]": {
+		"editor.formatOnSave": true,
+	},
+	// "javascript.validate.enable": false,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"workbench.colorTheme": "One Dark Pro",
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"redhat.telemetry.enabled": false,
+	"vim.vimrc.enable": true,
+
+	// <=> Purescript
+	"purescript.addNpmPath": true,
+
+	"purescript.addSpagoSources": true,
+	"purescript.buildCommand": "spago build -u --json-errors -u \"-g sourcemaps\"",
+	"purescript.codegenTargets": ["js", "sourcemaps"],
+	// "purescript.autoStartPscIde": false,
+
+  // "purescript.buildCommand": "pulp build -- --json-errors",
 }
