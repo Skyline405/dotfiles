@@ -56,8 +56,8 @@ ZSH_THEME="retrowave"
 
 # Disable recheck git status after each command
 # can improve speed in fit repos
-zsh -c 'git config --global --add oh-my-zsh.hide-status 1'
-zsh -c 'git config --global --add oh-my-zsh.hide-dirty 1'
+zsh -c 'git config --global oh-my-zsh.hide-status 1'
+zsh -c 'git config --global oh-my-zsh.hide-dirty 1'
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -138,3 +138,5 @@ export BASH_DIR="$HOME/.config/bash"
 
 # Epilog
 [ -s "$BASH_DIR/epilog.sh" ] && source "$BASH_DIR/epilog.sh"
+
+[ -f "/home/raul/.ghcup/env" ] && source "/home/raul/.ghcup/env" # ghcup-env

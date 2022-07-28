@@ -9,5 +9,5 @@ source $HOME/.config/nvim/nerdcommenter.vim
 source $HOME/.config/nvim/airline.vim
 source $HOME/.config/nvim/tabular.vim
 source $HOME/.config/nvim/easymotion.vim
-source $HOME/.config/nvim/coc.vim
+" source $HOME/.config/nvim/coc.vim
 

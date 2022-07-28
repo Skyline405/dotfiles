@@ -28,6 +28,8 @@ if hash nvim 2>/dev/null; then
 	alias vim="nvim"
 fi
 
+alias sudo='sudo -E'
+
 # some more ls aliases
 alias ll='ls -lh'
 alias la='ls -lha'
