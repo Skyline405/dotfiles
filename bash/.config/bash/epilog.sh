@@ -9,10 +9,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # App yarn global to path
-if command -v yarn > /dev/null; then
-  export PATH="$PATH:$(yarn global bin)"
-elif $YARN_NOT_FOUND_SHOW; then
-  echo "yarn not found"
-  set YARN_NOT_FOUND_SHOW = false
-fi
+# if command -v yarn > /dev/null; then
+#   export PATH="$PATH:$(yarn global bin)"
+# elif $YARN_NOT_FOUND_SHOW; then
+#   echo "yarn not found"
+#   set YARN_NOT_FOUND_SHOW = false
+# fi
 
