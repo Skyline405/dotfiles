@@ -11,7 +11,7 @@
 	"vim.easymotionDimBackground": false,
 
 	"explorer.incrementalNaming": "smart",
-	"editor.codeActionsOnSave": {},
+	// "editor.codeActionsOnSave": {},
 	"[vue]": {
 		"editor.defaultFormatter": "octref.vetur"
 	},
@@ -33,7 +33,7 @@
 	"vetur.format.defaultFormatter.html": "js-beautify-html",
 	"vetur.format.defaultFormatter.js": "none",
 	"vetur.format.options.useTabs": true,
-	"eslint.packageManager": "yarn",
+	"eslint.packageManager": "npm",
 	"editor.renderWhitespace": "all",
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -63,7 +63,11 @@
 	"vim.vimrc.enable": true,
 
 	// <=> Purescript
+	"[purescript]": {
+		"editor.formatOnSave": true,
+	},
 	"purescript.addNpmPath": true,
+	"purescript.formatter": "purs-tidy",
 
 	"purescript.addSpagoSources": true,
 	"purescript.buildCommand": "spago build -u --json-errors -u \"-g sourcemaps\"",
