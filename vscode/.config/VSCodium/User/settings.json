@@ -1,20 +1,34 @@
 {
 	"workbench.iconTheme": "material-icon-theme",
 	"workbench.tree.indent": 16,
+	"workbench.colorTheme": "One Dark Pro",
+
 	"editor.tabSize": 2,
 	"editor.bracketPairColorization.enabled": true,
+	"editor.renderWhitespace": "all",
 	// "editor.smoothScrolling": true,
+
 	"vim.easymotion": true,
 	"vim.surround": true,
 	"vim.hlsearch": true,
 	"vim.leader": " ",
 	"vim.easymotionDimBackground": false,
+	"vim.camelCaseMotion.enable": true,
+	"vim.vimrc.enable": true,
+	"vim.useSystemClipboard": true,
+	// "vim.normalModeKeyBindings": [],
 
 	"explorer.incrementalNaming": "smart",
 	// "editor.codeActionsOnSave": {},
+
+	// ============= [V] VUE.js ===============
+	"vetur.format.defaultFormatter.html": "js-beautify-html",
+	"vetur.format.defaultFormatter.js": "none",
+	"vetur.format.options.useTabs": true,
 	"[vue]": {
 		"editor.defaultFormatter": "octref.vetur"
 	},
+
 	// "prettier.enable": true,
 	// "prettier.endOfLine": "lf",
 	// "prettier.singleQuote": true,
@@ -30,11 +44,7 @@
 		// "editor.defaultFormatter": "esbenp.prettier-vscode",
 	},
 	// "prettier.configPath": "/home/raul/.prettierrc",
-	"vetur.format.defaultFormatter.html": "js-beautify-html",
-	"vetur.format.defaultFormatter.js": "none",
-	"vetur.format.options.useTabs": true,
 	"eslint.packageManager": "npm",
-	"editor.renderWhitespace": "all",
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
@@ -46,21 +56,19 @@
 		"editor.defaultFormatter": "vscode.typescript-language-features"
 		// "editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"[json]": {
-		"editor.defaultFormatter": "vscode.json-language-features"
-	},
+	// "[json]": {
+	// 	"editor.defaultFormatter": "vscode.json-language-features"
+	// },
 	"[dart]": {
 		"editor.formatOnSave": true,
 	},
 	// "javascript.validate.enable": false,
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"typescript.updateImportsOnFileMove.enabled": "always",
-	"workbench.colorTheme": "One Dark Pro",
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
 	"redhat.telemetry.enabled": false,
-	"vim.vimrc.enable": true,
 
 	// <=> Purescript
 	"[purescript]": {
@@ -73,6 +81,6 @@
 	"purescript.buildCommand": "spago build -u --json-errors -u \"-g sourcemaps\"",
 	"purescript.codegenTargets": ["js", "sourcemaps"],
 	// "purescript.autoStartPscIde": false,
-
   // "purescript.buildCommand": "pulp build -- --json-errors",
+	
 }
