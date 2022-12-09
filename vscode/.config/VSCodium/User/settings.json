@@ -8,6 +8,14 @@
 	"editor.renderWhitespace": "all",
 	// "editor.smoothScrolling": true,
 
+	"redhat.telemetry.enabled": false,
+
+	"files.exclude": {
+		// "build": true,
+		// "dist": true
+	},
+
+	// =============== [VIM] ===============
 	"vim.easymotion": true,
 	"vim.surround": true,
 	"vim.hlsearch": true,
@@ -19,7 +27,8 @@
 	// "vim.normalModeKeyBindings": [],
 
 	"explorer.incrementalNaming": "smart",
-	// "editor.codeActionsOnSave": {},
+
+	"eslint.packageManager": "npm",
 
 	// ============= [V] VUE.js ===============
 	"vetur.format.defaultFormatter.html": "js-beautify-html",
@@ -29,48 +38,30 @@
 		"editor.defaultFormatter": "octref.vetur"
 	},
 
-	// "prettier.enable": true,
-	// "prettier.endOfLine": "lf",
-	// "prettier.singleQuote": true,
-	// "prettier.semi": false,
-	// "prettier.useTabs": true,
-	// "prettier.tabWidth": 2,
-	// "prettier.trailingComma": "all",
-	// "prettier.arrowParens": "always",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"typescript.updateImportsOnFileMove.enabled": "always",
+
+	"[javascript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
 	"[typescript]": {
 		"editor.defaultFormatter": "vscode.typescript-language-features"
-		// "editor.defaultFormatter": "vscode.typescript-language-features"
-		// "editor.formatOnSave": true,
-		// "editor.defaultFormatter": "esbenp.prettier-vscode",
 	},
-	// "prettier.configPath": "/home/raul/.prettierrc",
-	"eslint.packageManager": "npm",
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	"files.exclude": {
-		// "build": true,
-		// "dist": true
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-		// "editor.defaultFormatter": "esbenp.prettier-vscode"
+	"[dart]": {
+		"editor.formatOnSave": true,
 	},
 	// "[json]": {
 	// 	"editor.defaultFormatter": "vscode.json-language-features"
 	// },
-	"[dart]": {
-		"editor.formatOnSave": true,
-	},
-	// "javascript.validate.enable": false,
-	"javascript.updateImportsOnFileMove.enabled": "always",
-	"typescript.updateImportsOnFileMove.enabled": "always",
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
-	"redhat.telemetry.enabled": false,
+	"svg.preview.mode": "svg",
 
-	// <=> Purescript
+	// =============== <=> Purescript ===============
 	"[purescript]": {
 		"editor.formatOnSave": true,
 	},
@@ -79,7 +70,10 @@
 
 	"purescript.addSpagoSources": true,
 	"purescript.buildCommand": "spago build -u --json-errors -u \"-g sourcemaps\"",
-	"purescript.codegenTargets": ["js", "sourcemaps"],
+	"purescript.codegenTargets": [
+		"js",
+		"sourcemaps"
+	],
 	// "purescript.autoStartPscIde": false,
   // "purescript.buildCommand": "pulp build -- --json-errors",
 	
