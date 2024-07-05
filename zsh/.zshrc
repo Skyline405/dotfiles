@@ -139,4 +139,11 @@ export BASH_DIR="$HOME/.config/bash"
 # Epilog
 [ -s "$BASH_DIR/epilog.sh" ] && source "$BASH_DIR/epilog.sh"
 
-[ -f "/home/raul/.ghcup/env" ] && source "/home/raul/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+
+# Load Angular CLI autocompletion.
+
+if command -v ng > /dev/null; then
+	source <(ng completion script)
+fi
+

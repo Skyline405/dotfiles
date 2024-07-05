@@ -16,3 +16,7 @@ export NVM_DIR="$HOME/.nvm"
 #   set YARN_NOT_FOUND_SHOW = false
 # fi
 
+# Stack autocompletion (for haskell)
+if command -v stack > /dev/null 2>&1; then
+    eval "$(stack --bash-completion-script stack)"
+fi
