@@ -5,14 +5,71 @@
 
 	"editor.tabSize": 2,
 	"editor.bracketPairColorization.enabled": true,
+  // "editor.guides.bracketPairs": true,
 	"editor.renderWhitespace": "all",
 	// "editor.smoothScrolling": true,
-
-	"redhat.telemetry.enabled": false,
 
 	"files.exclude": {
 		// "build": true,
 		// "dist": true
+	},
+
+	"explorer.incrementalNaming": "smart",
+
+	"files.associations": {
+		"*.dhall": "purescript",
+		".purs-*": "purescript"
+	},
+
+	"git.openRepositoryInParentFolders": "always",
+
+	// =============== [ Material Icons ] ===============
+
+	// files
+	"material-icon-theme.files.associations": {
+	},
+	"material-icon-theme.files.customClones": [
+		{
+			"name": "nx-project-config",
+			"base": "nx",
+			"color": "red-400",
+			"fileNames": ["project.json"],
+		},
+		{
+			"name": "tsconfig-lib",
+			"base": "tsconfig",
+			"color": "light-green-500",
+			"fileNames": ["tsconfig.lib.json"],
+		},
+		{
+			"name": "quasar-jsts",
+			"base": "quasar",
+			"color": "light-blue-500",
+			"fileNames": ["quasar.js", "quasar.ts"],
+		},
+	],
+
+	// folders
+	"material-icon-theme.folders.associations": {
+		"nls": "i18n",
+		"media": "audio",
+		"route": "routes",
+		"VehicleHistory": "archive",
+		"notification": "event",
+		"version": "resolver",
+		"store": "database",
+	},
+	"material-icon-theme.folders.customClones": [
+		{
+			"name": "folder-libs",
+			"base": "node",
+			"color": "yellow-700",
+			"folderNames": ["dispatch-libjs"]
+		}
+	],
+	
+	// langsuages icons
+	"material-icon-theme.languages.associations": {
 	},
 
 	// =============== [VIM] ===============
@@ -26,44 +83,55 @@
 	"vim.useSystemClipboard": true,
 	// "vim.normalModeKeyBindings": [],
 
-	"explorer.incrementalNaming": "smart",
-
-	"eslint.packageManager": "npm",
-
 	// ============= [V] VUE.js ===============
-	"vetur.format.defaultFormatter.html": "js-beautify-html",
-	"vetur.format.defaultFormatter.js": "none",
-	"vetur.format.options.useTabs": true,
+	// "vetur.format.defaultFormatter.html": "js-beautify-html",
+	// "vetur.format.defaultFormatter.js": "none",
+	// "vetur.format.options.useTabs": true,
+	// "[vue]": {
+	// 	"editor.defaultFormatter": "octref.vetur"
+	// },
+	"vue.complete.casing.tags": "autoKebab",
 	"[vue]": {
-		"editor.defaultFormatter": "octref.vetur"
+	// 	"editor.formatOnSave": true,
+		"editor.lightbulb.enabled": false, // should disable imports refactor, let's see
 	},
+
+	// ================ [JS] JS/TS ==============
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.tsdk": "node_modules/typescript/lib",
 
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"typescript.updateImportsOnFileMove.enabled": "always",
 
-	"[javascript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
-	},
-	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[dart]": {
+	// "[javascript]": {
+	// 	"editor.defaultFormatter": "vscode.typescript-language-features"
+	// },
+	// "[typescript]": {
+	// 	"editor.defaultFormatter": "vscode.typescript-language-features"
+	// },
+	// "[html]": {
+	// 	"editor.defaultFormatter": "esbenp.prettier-vscode"
+	// },
+	"[prisma]": {
 		"editor.formatOnSave": true,
 	},
-	// "[json]": {
-	// 	"editor.defaultFormatter": "vscode.json-language-features"
-	// },
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
 	},
-	"svg.preview.mode": "svg",
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
 
+	// =============== [ES] ESLint ==================
+	// "eslint.validate": ["javascript", "typescript", "vue"],
+	// "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+// 
 	// =============== <=> Purescript ===============
+	/*
 	"[purescript]": {
 		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "nwolverson.ide-purescript",
 	},
 	"purescript.addNpmPath": true,
 	"purescript.formatter": "purs-tidy",
@@ -74,7 +142,33 @@
 		"js",
 		"sourcemaps"
 	],
+	"purescript.declarationTypeCodeLens": false,
+	"purescript.exportsCodeLens": false,
+	// "purescript.buildOpenedFiles": true,
 	// "purescript.autoStartPscIde": false,
   // "purescript.buildCommand": "pulp build -- --json-errors",
+
+	"haskell.manageHLS": "PATH",
+	*/
+
+	// ============[ Dart & Flutter ]===============
+	"dart.debugExternalPackageLibraries": false,
+	"dart.debugSdkLibraries": false,
+	"[dart]": {
+		"editor.formatOnSave": true,
+	},
 	
+	// ================[ NX ]=======================
+	"nxConsole.showNodeVersionOnStartup": false,
+
+	// ================[ SVG ]======================
+	"svg.preview.mode": "svg",
+	"[svg]": {
+		"editor.defaultFormatter": "jock.svg"
+	},
+
+	// ================[ GLSL ]=====================
+	"glsl-canvas.useFormatter": false,
+	"glsl-canvas.useCompactFormatter": false,
+	"glsl-canvas.extensions": [],
 }
