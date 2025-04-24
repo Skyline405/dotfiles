@@ -56,7 +56,7 @@ nmap <leader>= <Plug>AirlineSelectNextTab
 nmap <leader>x :bd<CR>
 
 noremap <leader>ss :syntax sync fromstart<CR>
-imap jj <ESC>
+" imap jj <ESC>
 
 " Edit .vimrc
 if has('nvim')

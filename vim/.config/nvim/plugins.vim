@@ -59,8 +59,8 @@ Plug 'tpope/vim-fireplace'  " clojure support
 " Themes
 " ==============================================================================
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
-Plug 'crusoexia/vim-monokai'
+" Plug 'joshdick/onedark.vim'
+" Plug 'crusoexia/vim-monokai'
 
 " ==============================================================================
 " GIT

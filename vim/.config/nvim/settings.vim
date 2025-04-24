@@ -3,6 +3,7 @@
 " ==================================================================================================
 filetype plugin indent on " turns on file type detection, plugins and indentation
 syntax on                 " turn on syntax highlighting
+let g:coc_disable_startup_warning = 1
 let g:asmsyntax = 'nasm'
 set autoread									" auto re-read the file when its changed
 set number										" show lines numbers
