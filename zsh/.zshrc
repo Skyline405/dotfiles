@@ -132,18 +132,11 @@ export BASH_DIR="$HOME/.config/bash"
 [ -s "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
 
 ## Settings
-
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env"
+[ -f "$HOME/.deno/env" ] && source "$HOME/.deno/env"
 
 ## End settings
 
 # Epilog
 [ -s "$BASH_DIR/epilog.sh" ] && source "$BASH_DIR/epilog.sh"
-
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
-
-# Load Angular CLI autocompletion.
-
-if command -v ng > /dev/null; then
-	source <(ng completion script)
-fi
 
