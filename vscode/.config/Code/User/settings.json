@@ -1,13 +1,14 @@
 {
-	"workbench.iconTheme": "material-icon-theme",
 	"workbench.tree.indent": 16,
 	"workbench.colorTheme": "One Dark Pro",
+	"workbench.iconTheme": "material-icon-theme",
 
 	"editor.tabSize": 2,
 	"editor.bracketPairColorization.enabled": true,
   // "editor.guides.bracketPairs": true,
 	"editor.renderWhitespace": "all",
 	// "editor.smoothScrolling": true,
+	"editor.suggest.showSnippets": false,
 
 	"files.exclude": {
 		// "build": true,
@@ -17,15 +18,17 @@
 	"explorer.incrementalNaming": "smart",
 
 	"files.associations": {
-		"*.dhall": "purescript",
-		".purs-*": "purescript"
+		"*.wlp": "jsonc",
 	},
 
 	"git.openRepositoryInParentFolders": "always",
 
-	// =============== [ Material Icons ] ===============
+	// =============== [ Telemetry ] ===============
+	"gitlens.telemetry.enabled": false,
+	"telemetry.feedback.enabled": false,
+	"telemetry.telemetryLevel": "off",
 
-	// files
+	// =============== [ Material Icons ] ===============
 	"material-icon-theme.files.associations": {
 	},
 	"material-icon-theme.files.customClones": [
@@ -48,8 +51,6 @@
 			"fileNames": ["quasar.js", "quasar.ts"],
 		},
 	],
-
-	// folders
 	"material-icon-theme.folders.associations": {
 		"nls": "i18n",
 		"media": "audio",
@@ -83,37 +84,15 @@
 	"vim.useSystemClipboard": true,
 	// "vim.normalModeKeyBindings": [],
 
-	// ============= [V] VUE.js ===============
-	// "vetur.format.defaultFormatter.html": "js-beautify-html",
-	// "vetur.format.defaultFormatter.js": "none",
-	// "vetur.format.options.useTabs": true,
-	// "[vue]": {
-	// 	"editor.defaultFormatter": "octref.vetur"
-	// },
-	"vue.complete.casing.tags": "autoKebab",
-	"[vue]": {
-	// 	"editor.formatOnSave": true,
-		"editor.lightbulb.enabled": false, // should disable imports refactor, let's see
-	},
-
 	// ================ [JS] JS/TS ==============
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
 
 	"javascript.updateImportsOnFileMove.enabled": "always",
 	"typescript.updateImportsOnFileMove.enabled": "always",
-
-	// "[javascript]": {
-	// 	"editor.defaultFormatter": "vscode.typescript-language-features"
-	// },
-	// "[typescript]": {
-	// 	"editor.defaultFormatter": "vscode.typescript-language-features"
-	// },
-	// "[html]": {
-	// 	"editor.defaultFormatter": "esbenp.prettier-vscode"
-	// },
 	"[prisma]": {
 		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "Prisma.prisma",
 	},
 	"[jsonc]": {
 		"editor.defaultFormatter": "vscode.json-language-features"
@@ -123,41 +102,8 @@
 	},
 
 	// =============== [ES] ESLint ==================
-	// "eslint.validate": ["javascript", "typescript", "vue"],
-	// "editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
-// 
-	// =============== <=> Purescript ===============
-	/*
-	"[purescript]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "nwolverson.ide-purescript",
-	},
-	"purescript.addNpmPath": true,
-	"purescript.formatter": "purs-tidy",
 
-	"purescript.addSpagoSources": true,
-	"purescript.buildCommand": "spago build -u --json-errors -u \"-g sourcemaps\"",
-	"purescript.codegenTargets": [
-		"js",
-		"sourcemaps"
-	],
-	"purescript.declarationTypeCodeLens": false,
-	"purescript.exportsCodeLens": false,
-	// "purescript.buildOpenedFiles": true,
-	// "purescript.autoStartPscIde": false,
-  // "purescript.buildCommand": "pulp build -- --json-errors",
-
-	"haskell.manageHLS": "PATH",
-	*/
-
-	// ============[ Dart & Flutter ]===============
-	"dart.debugExternalPackageLibraries": false,
-	"dart.debugSdkLibraries": false,
-	"[dart]": {
-		"editor.formatOnSave": true,
-	},
-	
 	// ================[ NX ]=======================
 	"nxConsole.showNodeVersionOnStartup": false,
 
@@ -167,8 +113,12 @@
 		"editor.defaultFormatter": "jock.svg"
 	},
 
-	// ================[ GLSL ]=====================
-	"glsl-canvas.useFormatter": false,
-	"glsl-canvas.useCompactFormatter": false,
-	"glsl-canvas.extensions": [],
+
+	"redhat.telemetry.enabled": false,
+	"antlr4.generation": {
+		"mode": "none",
+		"language": "TypeScript",
+		"listeners": true,
+		"visitors": false
+	},
 }
